@@ -1,0 +1,14 @@
+{
+  "name": "orinoco-front-end",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch sass/index.scss public/style/index.css"
+  },
+  "author": "lafond",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.38.1"
+  }
+}
