@@ -1,0 +1,117 @@
+//style ohmyfood et autres font de ce style
+@mixin omf($couleur: rgb(0, 0, 0), $taille: 2rem, $gras: 700) {
+    font-family: "Pacifico", cursive;
+    font-weight: $gras;
+    font-size: $taille;
+    color: $couleur;
+}
+
+// btn rose dégradé
+@mixin btnrose($padside: 1.5rem) {
+    background: linear-gradient(170deg, ($secondaire), ($primaire));
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 0.8rem $padside;
+    box-shadow: 5px 5px 11px rgba(146, 146, 146, 0.726);
+    position: relative;
+    &:visited {
+        color: white;
+    }
+    &:hover::after {
+        opacity: 0.25;
+        transition: opacity 0.6s, box-shadow 0.6s;
+    }
+
+    &::after {
+        content: "";
+        background: white;
+        opacity: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 30px;
+        box-shadow: 5px 5px 11px rgba(90, 90, 90, 0.726);
+    }
+}
+
+// Mise en forme h2
+@mixin h2setting {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 2.1rem 0 0.9rem 0;
+    padding-left: $padleft;
+}
+
+// Coeur svg
+@mixin coeur($hcoeur: 25px, $wcoeur: 25px) {
+    &__coeursvg {
+        stroke: black;
+        stroke-width: 20;
+        fill: transparent;
+    }
+
+    &__coeur > svg {
+        height: $hcoeur;
+        width: $wcoeur;
+    }
+    &__coeur:hover &__coeursvg {
+        opacity: 0;
+        transition: 0.6s;
+    }
+    &__coeur:hover &__coeur__rempli {
+        opacity: 1;
+        transition: 0.6s;
+    }
+}
+
+// Footer
+@mixin pied {
+    background-color: $fond-footer;
+    padding-left: 1.5rem;
+    ol {
+        list-style: none;
+    }
+    color: white;
+    font-size: 1rem;
+
+    @media (min-width: 1000px) {
+        padding: 0 5rem 0 5rem;
+    }
+
+    &__logo {
+        @include omf(rgb(255, 255, 255), 1rem, 100);
+        padding: 0.8rem 0 0.8rem 0;
+        @media (min-width: 1000px) {
+            width: 90px;
+            margin: auto;
+            padding-bottom: 1.5rem;
+        }
+    }
+    &__item {
+        padding-bottom: 0.5rem;
+    }
+    &__txt {
+        &:link {
+            color: white;
+        }
+    }
+
+    &__liste {
+        @media (min-width: 1000px) {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            padding-bottom: 1.5rem;
+            align-items: center;
+        }
+    }
+
+    &__social {
+        font-size: 1.8rem;
+        padding-bottom: 0.8rem;
+    }
+}

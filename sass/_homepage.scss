@@ -1,0 +1,177 @@
+body {
+
+font-family: 'Roboto', sans-serif;
+    margin: 0;
+    background: white;
+}
+
+//Header
+.headercontainer {
+    background: $gris-fond;
+    box-shadow: 0 0 0.5rem rgb(0, 0, 0);
+}
+
+.header {
+    padding: 1rem 2rem 1rem 2rem;
+    display: flex;
+    max-width: 1400px;
+    margin: auto;
+    &__logo {
+        @include omf;
+        flex: 1;
+    }
+    &__panier {
+        font-size: 1.5rem;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+    }
+}
+// texte du header
+.headertxt {
+    display: flex;
+    justify-content: center;
+    background: linear-gradient($gris-fond, $gris-clair, white);
+    padding: 0rem 0.5rem 2rem 0.5rem;
+    .fas.fa-paw {
+        font-size: 1.2rem;
+        padding-right: 0.9rem;
+        padding-left: 1rem;
+        align-items: center;
+    }
+    &__txt {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+}
+// subheader
+.subtxt {
+    text-align: center;
+    padding: 2.5rem 2rem 2rem;
+
+    &__titre {
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    &__soustitre {
+        font-family: 'Pacifico';
+        font-size: 1.2rem;
+        margin: 2rem 0;
+
+    }
+
+    &__btn {
+        @include btnrose;
+    }
+}
+
+.subheader {
+    display: flex;
+    max-width: 1400px;
+    margin: auto;
+    padding-top: 2rem;
+    &__banniere {
+        @media (max-width: 1020px) {
+            display: none;
+        }
+    }
+}
+
+//
+.h2titres {
+    @include h2setting;
+}
+//
+
+.container2 {
+    background: white;
+    padding: 5px;
+    background: $gris-fond;
+    max-width: 1400px;
+    margin: auto;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+}
+.container3 {
+    background: $gris-fond;
+    max-width: 1400px;
+    border: dashed 2px #55371169;
+    border-radius: 10px;
+}
+
+.articles {
+    max-width: 1400px;
+    margin: auto;
+    padding-bottom: 2rem;
+    background-color: $gris-fond;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 2rem;
+
+    @media (min-width: 700px) {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.article {
+    position: relative;
+    background-color: $gris-clair;
+    box-shadow: 0px 5px 8px rgba(0, 0, 0, 0.274);
+    border-radius: 12px 12px 12px 12px;
+    margin: 0 $margin 0 $margin;    
+    transition: 0.2s;
+    &:hover {
+        transform: scale(1.015);
+
+    }
+    &:link {
+        color: black;
+    }
+
+    &:visited {
+        color: black;
+    }
+
+    &__image {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+        border-radius: 12px 12px 0px 0px;
+    }
+
+    &__footer {
+        display: flex;
+        align-items: center;
+    }
+    &__txt {
+        width: 100%;
+    }
+    &__titre {
+        font-size: 1.1rem;
+        font-weight: 700;
+        padding: 0.6rem 0 0.2rem 0.7rem;
+    }
+    &__soustitre {
+        display: block;
+        padding: 0rem 0 0.8rem 0.7rem;
+    }
+
+    @include coeur;
+    &__coeur {
+        position: relative;
+        padding-right: 1rem;
+        &__rempli {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            width: 25px;
+            height: 25px;
+        }
+    }
+}
+
+.footer {
+    @include pied;
+}
