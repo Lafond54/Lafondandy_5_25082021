@@ -1,0 +1,19 @@
+.confirm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    &__felicitation {
+        display: block;
+        padding-bottom: 1rem;
+    }
+    &__backindex {        
+        display: block;
+        @include btnrose;
+        width: 190px;
+        margin-top: 3rem;
+    }
+    &__votreordre {
+        font-size: 1.2rem;
+    }
+}

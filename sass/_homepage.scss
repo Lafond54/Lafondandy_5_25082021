@@ -4,7 +4,6 @@ body {
     background: white;
 }
 
-
 //Header
 .headercontainer {
     background: $gris-fond;
@@ -21,7 +20,7 @@ body {
         flex: 1;
     }
     &__panier {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
         justify-content: center;
         display: flex;
         align-items: center;
@@ -39,10 +38,19 @@ body {
         transition: 0.2s;
         &:hover {
             color: $primaire;
+            text-shadow: rgba(0, 0, 0, 0.13) 0.1em 0.1em 0.2em;
         }
     }
-    
 }
+.fas.fa-shopping-cart {
+    color: rgb(0, 0, 0);
+    transition: 0.2s;
+    &:hover {
+        color: $primaire;
+        text-shadow: rgba(0, 0, 0, 0.13) 0.1em 0.1em 0.2em;
+    }
+}
+
 // texte du header
 .headertxt {
     display: flex;
