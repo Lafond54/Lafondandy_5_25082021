@@ -49,9 +49,11 @@ body {
 }
 .header__logo {
   color: black;
+  text-decoration: none;
 }
 .header__logo:link {
   color: black;
+  text-decoration: none;
 }
 .header__logo__anim {
   color: black;
