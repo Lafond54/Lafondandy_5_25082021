@@ -1,0 +1,26 @@
+//Formulaire
+.h3form {    
+    margin: 1rem;
+}
+
+
+.formmain {
+    margin: 1rem ;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.btnpurchase {
+    display: block;
+    margin:auto;
+    width: 225px;
+    @include btnrose;
+    margin-bottom: 1rem;
+
+}
+
+.panier {
+    border: 2px;
+    width: 80%;
+}

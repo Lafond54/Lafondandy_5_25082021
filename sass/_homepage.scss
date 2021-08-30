@@ -2,6 +2,13 @@ body {
     font-family: "Roboto", sans-serif;
     margin: 0;
     background: white;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.contenu {
+    flex: 1 0 auto; // Sticky footer ne marche pas
 }
 
 //Header
@@ -115,12 +122,16 @@ body {
     margin: auto;
     border-radius: 10px;
     margin-bottom: 2rem;
+    @media (max-width: 1400px) {
+        margin: 0 1rem 2rem 1rem ;
+    }
 }
 .container3 {
     background: $gris-fond;
     max-width: 1400px;
     border: dashed 2px #55371169;
     border-radius: 10px;
+    
 }
 
 .articles {
@@ -196,4 +207,6 @@ body {
 
 .footer {
     @include pied;
+    flex-shrink: 0;
+    
 }

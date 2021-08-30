@@ -6,7 +6,7 @@
 
 .card {
     display: flex;    
-    max-height: 800px;
+
     @media (max-width: 1000px) {
         flex-direction: column;
     }
@@ -49,6 +49,7 @@
         font-weight: lighter;
     }
     &__add {
+        display: block;
         margin:auto;
         width: 190px;
         @include btnrose;

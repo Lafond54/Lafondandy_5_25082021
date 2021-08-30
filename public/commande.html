@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <!-- Format d'encodage -->
+    <meta charset="utf-8" />
+
+    <!-- Meta données -->
+    <meta name="author" content="Andy">
+    <meta name="description" content="Orinoco - Site de vente de peluches de Nounours">
+
+    <link rel="stylesheet" href="style/index.css" />
+    <title>Acceuil - Oniroco</title>
+    <!-- Eviter bug zoom en reduisant la largeur de fenêtre -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font awesome -->
+    <script src="https://kit.fontawesome.com/7c5be31bd4.js" crossorigin="anonymous"></script>
+
+
+    <!-- Police -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+
+
+
+</head>
+
+
+<body>
+    <div class="contenu">
+        <div class="headercontainer">
+            <header class="header">
+                <h1 class="header__logo"><a class="header__logo__anim" href="index.html">Orinoco</a></h1>
+                <a href="commande.html" class="header__panier"><i class="fas fa-shopping-cart"></i></a>
+            </header>
+        </div>
+
+
+        <div class="headertxt">
+            <i class="fas fa-paw"></i>
+
+            <span class="headertxt__txt">
+                Bienvenue sur Orinoco ! Découvrez un univers de tendresse et de douceur.
+            </span>
+
+        </div>
+        <div class="espaceblanc"></div>
+        <section class="container2">
+            <div class="container3">
+
+                <h3 class="h3form">Votre panier</h2> <!-- Tableau résumé du panier -->
+
+                    <table class="panier">
+                        <tbody>
+                            <tr>
+                                <td>Produit</td>
+                                <td>Quantité</td>
+                                <td>Prix</td>
+                                <td>Total</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </section>
+        <section class="container2">
+            <div class="container3">
+
+                <h3 class="h3form">Vos coordonnées pour Passer commande</h2> <!-- Formulaire -->
+                    <div class="formmain">
+                        <div class="">
+                            <label for="firstname" class="label">Prénom</label>
+                            <input type="text" name="firstname" id="firstname" class="input" required />
+                        </div>
+                        <div class="">
+                            <label for="lastname" class="label">Nom</label>
+                            <input type="text" name="lastname" id="lastname" class="input" required />
+                        </div>
+                        <div class="">
+                            <label for="email" class="label">Adresse e-mail</label>
+                            <input type="text" name="email" id="email" class="input" required />
+                        </div>
+                        <div class="">
+                            <label for="adress" class="label">Adresse</label>
+                            <input type="text" name="adress" id="adress" class="input" required />
+                        </div>
+                        <div class="">
+                            <label for="zipcode" class="label">Code postal</label>
+                            <input type="text" name="zipcode" id="zipcode" class="input" required />
+                        </div>
+                        <div class="">
+                            <label for="city" class="label">Ville</label>
+                            <input type="text" name="city" id="city" class="input" required />
+                        </div>
+                    </div>
+                    <a href="index.html" class="btnpurchase">Passer ma commande</a>
+
+        </section>
+    </div>
+    <footer class="footer">
+        <h4 class="footer__logo">Orinoco</h4>
+        <ol class="footer__liste">
+            <li class="footer__social">
+                <i class="fab fa-facebook-square"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube-square"></i>
+            </li>
+            <li class="footer__item">
+                <span class="footer_txt">Mentions légales</span>
+            </li>
+            <li class="footer__item">
+                <a href="mailto:contact@orinoco.com" class="footer__txt">Contact</a>
+            </li>
+        </ol>
+
+    </footer>
+
+
+
+</body>
+
+</html>
