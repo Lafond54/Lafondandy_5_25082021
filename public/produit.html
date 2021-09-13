@@ -26,7 +26,7 @@
 
     <!-- Favicon -->
 
-
+    <script src="script/.js" defer></script>
 
 </head>
 
@@ -52,38 +52,10 @@
         <div class="espaceblanc"></div>
         <section class="container2">
             <div class="container3">
-                <article class="card">
-                    <div class="card__divimg"><img class="card__divimg__item" src="images/nournours/teddy_1.jpg"
-                            alt="noursnours marron tout mignon"></div>
-                    <div class="card__d">
-                        <h2 class="card__d__name">Name (ID?)</h2>
+                <div class="articles">
 
-                        <div>
-                            <p class="card__d__descr">(DESCRIPTION)Lorem ipsum dolor sit, amet consectetur adipisicing
-                                elit. Eaque
-                                facilis beatae iure fugiat quisquam, maiores velit ullam quos nemo sit corrupti quis
-                                repellat doloribus. Aliquam ullam natus quaerat magnam impedit!</p>
-                        </div>
+                </div>
 
-
-                        <div class="flexgrow"></div>
-                        <div class="card__d__price">Prix : 29,00€ (PRICE)</div>
-                        <div class="selectcolor">
-
-                            <form action="post" action="" name=formulairecouleur autocomplete="on">
-                                <label for="color">Choisir la couleur:</label>
-                                <select name="choixcouleur" id="color" required>
-
-                                    <option value="">Noir</option>
-                                    <option value="">blanc</option>
-                                    <option value="">gris</option>
-                                </select>
-                            </form>
-
-                        </div>
-
-
-                </article>
                 <a href="index.html" class="card__d__add">Ajouter au Panier</a>
             </div>
         </section>
@@ -106,6 +78,38 @@
         </ol>
 
     </footer>
+    <template class="card">
+        <div class="card__divimg"><img class="card__divimg__item" src="images/nournours/teddy_1.jpg"
+                alt="noursnours marron tout mignon"></div>
+        <div class="card__d">
+            <h2 class="card__d__name">Name (ID?)</h2>
+
+            <div>
+                <p class="card__d__descr">(DESCRIPTION)Lorem ipsum dolor sit, amet consectetur adipisicing
+                    elit. Eaque
+                    facilis beatae iure fugiat quisquam, maiores velit ullam quos nemo sit corrupti quis
+                    repellat doloribus. Aliquam ullam natus quaerat magnam impedit!</p>
+            </div>
+
+
+            <div class="flexgrow"></div>
+            <div class="card__d__price">Prix : 29,00€ (PRICE)</div>
+            <div class="selectcolor">
+
+                <form action="post" name=formulairecouleur autocomplete="on">
+                    <label for="color">Choisir la couleur:</label>
+                    <select name="choixcouleur" id="color" required>
+
+                        <option value="">Noir</option>
+                        <option value="">blanc</option>
+                        <option value="">gris</option>
+                    </select>
+                </form>
+
+            </div>
+        </div>
+
+    </template>
 
 
 
