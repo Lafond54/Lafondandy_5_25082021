@@ -25,8 +25,8 @@ console.log(teddiesApiId)
 
 // Test réponse de l'api (a supprimer)
 fetch(teddiesApiId)
-.then (res => res.json())
-.then (data => console.log(data))
+    .then(res => res.json())
+    .then(data => console.log(data))
 
 
 
@@ -52,10 +52,11 @@ async function getTeddies() {
     catch (err) {
         console.error(err)
     }
+
 }
 
 
-// fonction
+// fonction modif DOM
 
 function addTeddyToDom(teddy) {
     const article = templatecard.cloneNode(true)
@@ -73,7 +74,7 @@ function addTeddyToDom(teddy) {
 async function refresh() {
     articles.innerHTML = ""
     const teddies = await getTeddies()
-    
+    //teddies.forEach(addTeddyToDom)
 
 
 

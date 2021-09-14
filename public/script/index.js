@@ -36,10 +36,13 @@ function addTeddyToDom(teddy) {
     const article = templatearticle.cloneNode(true)
     article.querySelector(".article__image").src = teddy.imageUrl
     article.querySelector(".article__titre").innerText = teddy.name
-    article.querySelector(".article__soustitre").innerText = teddy.price
+    let prixApi = article.querySelector(".article__soustitre").innerText = teddy.price
     article.querySelector(".article").setAttribute("href", "produit.html?id=" + teddy._id)
     articles.appendChild(article)
+
+    console.log(prixApi)
 }
+
 
 
 // ******************************
@@ -47,15 +50,16 @@ function addTeddyToDom(teddy) {
 const article = templatearticle
 let prix = article.querySelector(".article__soustitre").innerText // Surement Mauvais ciblage 
 let valeurPrix = prix.value // Undefined
+
 console.log(valeurPrix)
 
-const b = 100
+
 function conversionEuro(a, b) {
     let c = a / b;
     console.log(c)        // NaN
 }
 
-conversionEuro(prix, b) 
+conversionEuro(prix, 100)
 
 // ******************************
 
