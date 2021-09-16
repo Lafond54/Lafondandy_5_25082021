@@ -20,11 +20,11 @@ console.log(id)
 let teddiesApiUrl = "http://localhost:3000/api/teddies"
 
 //Variable egale à Concatenation Url + ID
-let teddiesApiId = teddiesApiUrl.concat(`/` + id)
-console.log(teddiesApiId)
+let teddyApiUrl = teddiesApiUrl.concat(`/` + id)
+
 
 // Test réponse de l'api (a supprimer)
-fetch(teddiesApiId)
+fetch(teddyApiUrl)
     .then(res => res.json())
     .then(data => console.log(data))
 
@@ -36,14 +36,14 @@ const templatecard = document.querySelector(".card").content
 console.log(".card")
 
 //Variable constante cible la div qui recoit  le futur article
-const articles = document.querySelector(".articles")
+const articles = document.querySelector(".articleproduit")
 console.log(articles)
 
 
 //fonction 
-async function getTeddies() {
+async function getTeddy(Url) {
     try {
-        const res = await fetch(teddiesApiId)
+        const res = await fetch(Url)
         if (!res.ok) {
             throw res
         }
@@ -58,23 +58,24 @@ async function getTeddies() {
 
 // fonction modif DOM
 
-function addTeddyToDom(teddy) {
+function addTeddyToDom(teddy) {            //???? teddy = data ???? Par quel moyen ?
     const article = templatecard.cloneNode(true)
     article.querySelector(".card__divimg__item").src = teddy.imageUrl
     article.querySelector(".card__d__name").innerText = teddy.name
-    article.querySelector(".card__d__price").innerText = teddy.price
+    article.querySelector(".card__d__price").innerText = teddy.price / 100 + "€"
     article.querySelector(".card__d__descr").innerText = teddy.description
     //article.querySelector(".article").setAttribute("href", "produit.html?id=" + teddy._id)
     articles.appendChild(article)
 
+    console.log(teddy)
 }
 
 
 
 async function refresh() {
     articles.innerHTML = ""
-    const teddies = await getTeddies()
-    //teddies.forEach(addTeddyToDom)
+    const teddy = await getTeddy(teddyApiUrl)
+    addTeddyToDom(teddy)
 
 
 

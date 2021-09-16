@@ -318,14 +318,15 @@ body {
   height: 5rem;
 }
 
-.card {
+.articleproduit {
   display: flex;
 }
 @media (max-width: 1000px) {
-  .card {
+  .articleproduit {
     flex-direction: column;
   }
 }
+
 .card__divimg {
   margin: 5px;
 }

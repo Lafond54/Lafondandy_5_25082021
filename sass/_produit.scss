@@ -3,13 +3,15 @@
 }
 
 //carte produit
-
-.card {
-    display: flex;    
+.articleproduit {
+        display: flex;    
 
     @media (max-width: 1000px) {
         flex-direction: column;
     }
+}
+.card {
+
     &__divimg {
         margin: 5px;
     }

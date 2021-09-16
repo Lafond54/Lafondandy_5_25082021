@@ -36,11 +36,17 @@ function addTeddyToDom(teddy) {
     const article = templatearticle.cloneNode(true)
     article.querySelector(".article__image").src = teddy.imageUrl
     article.querySelector(".article__titre").innerText = teddy.name
-    let prixApi = article.querySelector(".article__soustitre").innerText = teddy.price
+    article.querySelector(".article__soustitre").innerText = teddy.price  / 100 + "€" // Numberformat ou cette methode suffit ?
+
+    let prixApi = teddy.price
+    console.log(prixApi)
+
+
     article.querySelector(".article").setAttribute("href", "produit.html?id=" + teddy._id)
     articles.appendChild(article)
+ 
 
-    console.log(prixApi)
+
 }
 
 
