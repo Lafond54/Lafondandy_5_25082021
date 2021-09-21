@@ -54,7 +54,7 @@ async function getTeddy(Url) {
     }
 
 }
-console.log(test)
+
 
 // fonction modif DOM
 
