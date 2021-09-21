@@ -54,7 +54,7 @@ async function getTeddy(Url) {
     }
 
 }
-
+console.log(test)
 
 // fonction modif DOM
 
@@ -68,20 +68,47 @@ function addTeddyToDom(teddy) {            //???? teddy = data ???? Par quel moy
     articles.appendChild(article)
 
     console.log(teddy)
-}
 
+}
 
 
 async function refresh() {
     articles.innerHTML = ""
-    const teddy = await getTeddy(teddyApiUrl)
+    const teddy = await getTeddy(teddyApiUrl)  // Pourquoi je peux pas recuperer teddy dans d'autres endroits que ces fonctions là
     addTeddyToDom(teddy)
-
-
 
 }
 
 refresh()
+
+
+
+
+// Ecoute des evenements du click du bouton ajouter
+
+document.querySelector(".card__d__add").addEventListener('click', onClick)
+function onClick(e) {
+    console.log("click")
+    e.preventDefault()                                                   // Permet d'empêcher le comportement naturel du lien
+
+
+    //Variable dans laquelle on met les key et valeurs qui sont dans le LS
+    let produitsDansLeLS = JSON.parse(localStorage.getItem("produit")) //methode parse pour convertir le JSON en objet JS
+    console.log(produitsDansLeLS)
+
+    // Si LS est vide
+    if (produitsDansLeLS) {
+    }
+    //Si LS n'est pas vide
+    else {
+
+        produitsDansLeLS = []
+        produitsDansLeLS.push(teddy)
+        console.log(produitsDansLeLS)
+
+    }
+
+}
 
 
 
