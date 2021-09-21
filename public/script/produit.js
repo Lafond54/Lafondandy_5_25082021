@@ -86,13 +86,14 @@ refresh()
 
 // Ecoute des evenements du click du bouton ajouter
 
+
 document.querySelector(".card__d__add").addEventListener('click', onClick)
 function onClick(e) {
-    console.log("click")
+
     e.preventDefault()                                                   // Permet d'empêcher le comportement naturel du lien
 
 
-    //Variable dans laquelle on met les key et valeurs qui sont dans le LS
+    //Variable dans laquelle on met les keys et valeurs qui sont dans le LS
     let produitsDansLeLS = JSON.parse(localStorage.getItem("produit")) //methode parse pour convertir le JSON en objet JS
     console.log(produitsDansLeLS)
 
@@ -103,8 +104,9 @@ function onClick(e) {
     else {
 
         produitsDansLeLS = []
-        produitsDansLeLS.push(teddy)
+ 
         console.log(produitsDansLeLS)
+        localStorage.setItem("produit", JSON.stringify(produitsDansLeLS))
 
     }
 
