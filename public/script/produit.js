@@ -69,6 +69,12 @@ function addTeddyToDom(teddy) {            //???? teddy = data ???? Par quel moy
 
     console.log(teddy)
 
+    // Ecoute du bouton enclenchant la fonction d'ajout d'un nonours dans le panier
+    document.querySelector(".card__d__add").addEventListener('click', (e) => {
+        e.preventDefault()
+        addTeddyToCart(teddy)
+    })
+
 }
 
 
@@ -84,34 +90,34 @@ refresh()
 
 
 
-// Ecoute des evenements du click du bouton ajouter
 
 
-document.querySelector(".card__d__add").addEventListener('click', onClick)
-function onClick(e) {
+//Fonction ajout nounours dans le panier
 
-    e.preventDefault()                                                   // Permet d'empêcher le comportement naturel du lien
+function addTeddyToCart(teddy) {
 
 
-    //Variable dans laquelle on met les keys et valeurs qui sont dans le LS
-    let produitsDansLeLS = JSON.parse(localStorage.getItem("produit")) //methode parse pour convertir le JSON en objet JS
-    console.log(produitsDansLeLS)
 
-    // Si LS est vide
-    if (produitsDansLeLS) {
+    //variable panier = la chaine de caractere de ( la valeur associé à la clé ) reconstruite en valeur JS OU= array vide
+    const panier = JSON.parse(localStorage.getItem("panier")) || []
+    console.log(panier) // marche pas, normal ?
+
+    //variable teddyCart = chercher dans le panier si il exite un Id stocké dans teddyCart correpondant à un ID de l'objet teddy
+    let teddyCart = panier.find((teddyCart) => teddyCart.id === teddy._id)
+    
+    // Si teddyCart est faux, alors on injecte une valeur par defaut dans teddycart
+    if (!teddyCart) {
+        teddyCart = { id: teddy._id, quantity: 0 }
+
+        panier.push(teddyCart)
     }
-    //Si LS n'est pas vide
-    else {
 
-        produitsDansLeLS = []
- 
-        console.log(produitsDansLeLS)
-        localStorage.setItem("produit", JSON.stringify(produitsDansLeLS))
-
-    }
+    //si teddyCart est vrai, alors on Incrémente sur la quantité 
+    teddyCart.quantity++    
+    //Duo clé valeur ajouté dans le localstorage en chaine de caractere
+    localStorage.setItem("panier", JSON.stringify(panier))
 
 }
-
 
 
 

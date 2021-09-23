@@ -462,6 +462,12 @@ body {
   flex-direction: column;
 }
 
+label {
+  display: block;
+  width: 150px;
+  float: left;
+}
+
 .btnpurchase {
   display: block;
   margin: auto;
@@ -499,6 +505,35 @@ body {
 .panier {
   border: 2px;
   width: 80%;
+}
+
+.container-panier-vide {
+  padding: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.tableaupanier {
+  border-collapse: collapse;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
+  width: auto;
+  background-color: #5d70522a;
+  min-width: 300px;
+  width: auto;
+  margin: 35px auto;
+}
+.tableaupanier__head {
+  background-color: #383838;
+  color: blanchedalmond;
+}
+.tableaupanier__body tr:last-of-type {
+  border-bottom: 5px solid #383838;
+}
+
+td, th {
+  border: 1px solid black;
+  padding: 15px;
+  text-align: center;
+  vertical-align: middle;
 }
 
 /*# sourceMappingURL=index.css.map */
