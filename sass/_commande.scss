@@ -1,70 +1,87 @@
 //Formulaire
-.h3form {    
+.h3form {
     margin: 1rem;
 }
 
 //Formulaire ******
 .formmain {
-    
-    margin: 1rem ;
+    margin: 1rem;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-
-
 }
 
-label
-{
-	display: block;
-	width: 150px;
-	float: left;
+label {
+    display: block;
+    width: 150px;
+    float: left;
 }
 
 //*********
 .btnpurchase {
     display: block;
-    margin:auto;
-    width: 225px;
+    margin: auto;
+    width: 242px;
     @include btnrose;
     margin-bottom: 1rem;
-
+    margin-top: 1rem;
+    border-style: none;
 }
 
-.panier {
-    border: 2px;
-    width: 80%;
+//balise small (validation des donnees)
+
+small {
+}
+.small.__ok {
+    transition: 1s;
+    background-color: rgba(255, 255, 255, 0.301);
+    color: rgb(71, 133, 9);
+}
+.small.__notok {
+    transition: 1s;
+    background-color: rgba(255, 255, 255, 0.301);
+    color: rgb(207, 0, 41);
 }
 
 .container-panier-vide {
     padding: 0.5rem;
     font-size: 1.8rem;
- 
 }
 
 .tableaupanier {
     border-collapse: collapse;
-    box-shadow:0 5px 20px rgba(0, 0, 0, 0.466);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
     width: auto;
     background-color: #5d70522a;
     min-width: 300px;
-    width: auto;
-    margin: 35px auto;
+    margin: 10px auto;
     &__head {
-        background-color: #383838;;
+        background-color: #383838;
         color: blanchedalmond;
-        
     }
     &__body tr:last-of-type {
         border-bottom: 5px solid #383838;
     }
 }
 
-td, th /* Toutes les cellules des tableaux... */
-{
-    border: 1px solid black; 
+td, th /* Toutes les cellules des tableaux... */ {
+    border: 1px solid black;
     padding: 15px;
-    text-align:center;
-    vertical-align:middle;
+    text-align: center;
+    vertical-align: middle;
 }
 
+//Btn vider panier
+.clearpanier {
+    padding: 0.5rem 1rem 00.5rem 1rem;
+    background: #5d70522a;
+    display: block;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
+    margin: 15px auto;
+    font-size: 1rem;
+
+    
+    &:hover {
+        background: linear-gradient(170deg, ($secondaire), ($primaire));
+    }
+}

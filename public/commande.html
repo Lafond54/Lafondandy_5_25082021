@@ -64,15 +64,16 @@
                             <th>Total</th>
                         </thead>
                         <tbody class=tableaupanier__body>
-                            <td>id</td>
-                            <td>quantité</td>
-                            <td>100€</td>
-                            <td>total</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                         </tbody>
 
 
 
                     </table>
+                    <button class="clearpanier">Vider le panier</button>
                 </div>
             </div>
         </section>
@@ -80,7 +81,7 @@
             <div class="container3">
 
                 <h2 class="h3form">Vos coordonnées pour Passer commande</h2> <!-- Formulaire -->
-                <div class="formmain">
+                <form class="formmain" action="" method="POST" id="purchaseform">
                     <div class="">
                         <label for="firstname" class="label">Prénom :</label>
                         <input type="text" name="firstname" id="firstname" class="input" required />
@@ -92,6 +93,7 @@
                     <div class="">
                         <label for="email" class="label">Adresse e-mail :</label>
                         <input type="text" name="email" id="email" class="input" required />
+                        <small  class="small"></small>
                     </div>
                     <div class="">
                         <label for="adress" class="label">Adresse :</label>
@@ -105,8 +107,9 @@
                         <label for="city" class="label">Ville :</label>
                         <input type="text" name="city" id="city" class="input" required />
                     </div>
-                </div>
-                <a href="confirmation.html" class="btnpurchase">Passer ma commande</a>
+                    <button href="confirmation.html" class="btnpurchase">Passer ma commande</button>
+                </form>
+                
             </div>
         </section>
     </div>
