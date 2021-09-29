@@ -1,16 +1,30 @@
+import { getTeddy } from "./function.js"
 
 // Contenu panier sous forme d'array accessible depuis la page panier
 const panier = JSON.parse(localStorage.getItem("panier"))
 console.log(panier)
 
-// Vider le panier
+    // Vider le panier
 
-    document.querySelector(".clearpanier").addEventListener('click', () => {
+    // document.querySelector(".clearpanier").addEventListener('click', () => {
 
-        localStorage.clear()
-        location.reload(true) // Bonne methode pour refresh la page ?
+    //     localStorage.removeItem("panier") //removeitem en ciblant clé panier
+    //     location.reload(true) // Bonne methode pour refresh la page ?
 
-    })
+    // })
+
+
+    async function main () {
+        const teddiesPromises = panier.map(item => getTeddy(item.id))
+        const teddies = await Promise.all(teddiesPromises)
+        console.log(teddies)
+        panier.forEach(cartItem => {
+            const teddy = teddies.find(teddy => teddy._id === cartItem.id)
+            console.log(cartItem, teddy)
+        });
+    }
+    main()
+
 
 // //Variable http de l'API
 // let teddiesApiUrl = "http://localhost:3000/api/teddies"
@@ -19,68 +33,49 @@ console.log(panier)
 // let teddyApiUrl = teddiesApiUrl.concat(`/` + id)
 
 // Boucle sur le tableau d'ojets du LS pour obtenir la liste des IDs dans le chariot
-for (i = 0; i < panier.length; i++) {
-    let chariot = panier[i]
-    console.log(chariot)   
+// for (i = 0; i < panier.length; i++) {
+//     let chariot = panier[i]
+//     console.log(chariot)
 
-}
-
-
-// 
-// async () => {
-//     const products = await Promise.all(
-//         cartProducts
-//         .reduce((acc, cartProduct) => {
-//             acc.add(cartProduct.id)
-//         }, new Set())
-//         .map(getProductData)
-//     )
+// }
 
 
 
+// //********affichage des produits du panier**********
+// const elementPanier = document.querySelector(".tableaupanier__body")
+// console.log(elementPanier)
 
+// //Si le panier est vide : afficher le panier vide
 
+// if (panier === null) {
+//     const panierVide = `<div class=container-panier-vide>Votre Panier est vide </div>`
+//     elementPanier.innerHTML = panierVide
+// }
+// else {
+//     //si le panier est pas vide
+//     structureProduitPanier = []
 
+//     for (i = 0; i < panier.length; i++) {
+//         console.log(`Nbre d'elements dans le local storage (pas la quantite) = ` + panier.length)
 
+//         structureProduitPanier = structureProduitPanier + `
+//         <tr>
+//         <td>${panier[i].id}</td>
+//         <td>${panier[i].quantity}</td>        
+//         <td>100€</td>
+//         <td>addition du total</td>
+//         </tr>
+//         `
 
+//     }
+//     if (i == panier.length) {
+//         //injection html dans page panier
 
+//         elementPanier.innerHTML = structureProduitPanier
 
+//     }
 
-//********affichage des produits du panier**********
-const elementPanier = document.querySelector(".tableaupanier__body")
-console.log(elementPanier)
-
-//Si le panier est vide : afficher le panier vide
-
-if (panier === null) {
-    const panierVide = `<div class=container-panier-vide>Votre Panier est vide </div>`
-    elementPanier.innerHTML = panierVide
-}
-else {
-    //si le panier est pas vide
-    structureProduitPanier = []
-
-    for (i = 0; i < panier.length; i++) {
-        console.log(`Nbre d'elements dans le local storage (pas la quantite) = ` + panier.length)
-
-        structureProduitPanier = structureProduitPanier + `
-        <tr>
-        <td>${panier[i].id}</td>
-        <td>${panier[i].quantity}</td>        
-        <td>100€</td>
-        <td>addition du total</td>
-        </tr>
-        `
-
-    }
-    if (i == panier.length) {
-        //injection html dans page panier
-
-        elementPanier.innerHTML = structureProduitPanier
-
-    }
-
-}
+// }
 
 
 
