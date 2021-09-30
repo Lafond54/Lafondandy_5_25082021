@@ -28,7 +28,7 @@
 
 
     <script type="module" src="script/commande.js" defer></script>
-    
+
 </head>
 
 
@@ -55,25 +55,24 @@
             <div class="container3">
                 <div>
                     <h2 class="h3form">Votre panier</h2> <!-- Tableau résumé du panier -->
-
-                    <table class="tableaupanier">
-
-                        <thead class="tableaupanier__head">
-                            <th>Produit</th>
-                            <th>Quantité</th>
-                            <th>Prix</th>
-                            <th>Total</th>
-                        </thead>
-                        <tbody class=tableaupanier__body>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tbody>
+                    <div class="paniercontain">
 
 
 
-                    </table>
+                        <table class="tableaupanier">
+
+                            <thead class="tableaupanier__head">
+                                <th>Produit</th>
+                                <th>Quantité</th>
+                                <th>Prix</th>
+                                <th>Total</th>
+                            </thead>
+
+
+
+                        </table>
+
+                    </div>
                     <button class="clearpanier">Vider le panier</button>
                 </div>
             </div>
@@ -94,7 +93,7 @@
                     <div class="">
                         <label for="email" class="label">Adresse e-mail :</label>
                         <input type="text" name="email" id="email" class="input" required />
-                        <small  class="small"></small>
+                        <small class="small"></small>
                     </div>
                     <div class="">
                         <label for="adress" class="label">Adresse :</label>
@@ -110,7 +109,7 @@
                     </div>
                     <button href="confirmation.html" class="btnpurchase">Passer ma commande</button>
                 </form>
-                
+
             </div>
         </section>
     </div>
@@ -132,7 +131,16 @@
         </ol>
 
     </footer>
+    <template class="itemcart">
+        <tbody class=tableaupanier__body>
+            <td class="tname"></td>
+            <td class="tqty"></td>
+            <td class="tprice"></td>
+            <td class="ttotal"></td>
+        </tbody>
 
+
+    </template>
 
 
 </body>

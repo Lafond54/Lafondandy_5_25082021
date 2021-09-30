@@ -6,24 +6,42 @@ console.log(panier)
 
     // Vider le panier
 
-    // document.querySelector(".clearpanier").addEventListener('click', () => {
+    document.querySelector(".clearpanier").addEventListener('click', () => {
 
-    //     localStorage.removeItem("panier") //removeitem en ciblant clé panier
-    //     location.reload(true) // Bonne methode pour refresh la page ?
+        localStorage.removeItem("panier") 
+        location.reload(true) 
 
-    // })
-
+    })
 
     async function main () {
-        const teddiesPromises = panier.map(item => getTeddy(item.id))
+        const teddiesPromises = panier.map(item => getTeddy(item.id))     
         const teddies = await Promise.all(teddiesPromises)
         console.log(teddies)
         panier.forEach(cartItem => {
             const teddy = teddies.find(teddy => teddy._id === cartItem.id)
-            console.log(cartItem, teddy)
+            console.log(cartItem)
+            console.log(teddy)
         });
+    
+        const templateItemCart = document.querySelector(".itemcart").content
+        const articles = document.querySelector(".paniercontain")
+        function addTeddyToDom(teddy) {       
+                
+            const article = templateItemCart.cloneNode(true)
+            article.querySelector(".tname").innerText = teddy.name
+            article.querySelector(".tqty").innerText = teddy.quantity
+            article.querySelector(".tprice").innerText = teddy.price / 100 + "€"
+            article.querySelector(".ttotal").innerText = teddy.description
+            articles.appendChild(article)
+        }    
+            addTeddyToDom()
     }
     main()
+
+
+    //  Modif DOm ***************
+
+
 
 
 // //Variable http de l'API
@@ -80,7 +98,12 @@ console.log(panier)
 
 
 
-// Formulaire
+
+
+
+
+
+// Formulaire ********************
 
 let form = document.querySelector('#purchaseform')
 

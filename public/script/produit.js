@@ -60,9 +60,10 @@ async function getTeddy(Url) {
 
 function addTeddyToDom(teddy) {            //???? teddy = data ???? Par quel moyen ?
     const article = templatecard.cloneNode(true)
+    let price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     article.querySelector(".card__divimg__item").src = teddy.imageUrl
     article.querySelector(".card__d__name").innerText = teddy.name
-    article.querySelector(".card__d__price").innerText = teddy.price / 100 + "€"
+    article.querySelector(".card__d__price").innerText = price
     article.querySelector(".card__d__descr").innerText = teddy.description
     //article.querySelector(".article").setAttribute("href", "produit.html?id=" + teddy._id)
     articles.appendChild(article)
@@ -127,12 +128,6 @@ function addTeddyToCart(teddy) {
 
 
 
-
-/*
-//teddies.forEach(teddy => {
-    addTeddyToDom(teddy)
-})
-*/
 
 
 

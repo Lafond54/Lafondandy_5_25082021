@@ -34,9 +34,10 @@ async function getTeddies() {
 
 function addTeddyToDom(teddy) {
     const article = templatearticle.cloneNode(true)
+    let price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     article.querySelector(".article__image").src = teddy.imageUrl
     article.querySelector(".article__titre").innerText = teddy.name
-    article.querySelector(".article__soustitre").innerText = teddy.price  / 100 + "€" // Numberformat ou cette methode suffit ?
+    article.querySelector(".article__soustitre").innerText = price  
 
     let prixApi = teddy.price
     console.log(prixApi)
