@@ -51,7 +51,7 @@ small {
 .tableaupanier {
     border-collapse: collapse;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
-    width: auto;
+   
     background-color: #5d70522a;
     min-width: 300px;
     margin: 10px auto;
@@ -59,8 +59,13 @@ small {
         background-color: #383838;
         color: blanchedalmond;
     }
+    &__body {
+        background-color: rgba(61, 61, 61, 0.089);
+
+    }
     &__body tr:last-of-type {
         border-bottom: 5px solid #383838;
+      
     }
 }
 

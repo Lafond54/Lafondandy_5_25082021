@@ -4,42 +4,62 @@ import { getTeddy } from "./function.js"
 const panier = JSON.parse(localStorage.getItem("panier"))
 console.log(panier)
 
-    // Vider le panier
+// Vider le panier
 
-    document.querySelector(".clearpanier").addEventListener('click', () => {
+document.querySelector(".clearpanier").addEventListener('click', () => {
 
-        localStorage.removeItem("panier") 
-        location.reload(true) 
+    localStorage.removeItem("panier")
+    location.reload(true)
 
+})
+
+async function main() {
+    const teddiesPromises = panier.map(item => getTeddy(item.id))
+    const teddies = await Promise.all(teddiesPromises)
+    console.log(teddies)
+    panier.forEach(cartItem => { // cartItem c'est qoui ici? nom d'une fonction?
+        const teddy = teddies.find(teddy => teddy._id === cartItem.id)
+
+        function appelPanier() {
+            (addTeddyToDom(teddy, cartItem))
+        }
+        appelPanier()
     })
+}
 
-    async function main () {
-        const teddiesPromises = panier.map(item => getTeddy(item.id))     
-        const teddies = await Promise.all(teddiesPromises)
-        console.log(teddies)
-        panier.forEach(cartItem => {
-            const teddy = teddies.find(teddy => teddy._id === cartItem.id)
-            console.log(cartItem)
-            console.log(teddy)
-        });
-    
-        const templateItemCart = document.querySelector(".itemcart").content
-        const articles = document.querySelector(".paniercontain")
-        function addTeddyToDom(teddy) {       
-                
-            const article = templateItemCart.cloneNode(true)
-            article.querySelector(".tname").innerText = teddy.name
-            article.querySelector(".tqty").innerText = teddy.quantity
-            article.querySelector(".tprice").innerText = teddy.price / 100 + "€"
-            article.querySelector(".ttotal").innerText = teddy.description
-            articles.appendChild(article)
-        }    
-            addTeddyToDom()
-    }
-    main()
+// 
 
 
-    //  Modif DOm ***************
+console.log(panier)
+
+
+main()
+
+
+
+const templateItemCart = document.querySelector(".itemcart").content
+const articles = document.querySelector(".tableaupanier")
+function addTeddyToDom(teddy, panier) {    
+    const article = templateItemCart.cloneNode(true)
+
+    //Calcul total et convert currency
+    const price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
+    const priceTotal = panier.quantity * teddy.price
+    const priceTotaleuro= new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
+    // Inject DOM
+    article.querySelector(".tname").innerText = teddy.name
+    article.querySelector(".tqty").innerText = panier.quantity
+    article.querySelector(".tprice").innerText = price
+    article.querySelector(".ttotal").innerText = priceTotaleuro
+    articles.appendChild(article)
+
+}
+
+
+
+
+
+//  Modif DOm ***************
 
 
 
