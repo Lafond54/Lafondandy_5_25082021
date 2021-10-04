@@ -9,6 +9,9 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+    &__zipcode{
+        
+    }
 }
 
 label {
@@ -52,7 +55,7 @@ small {
     border-collapse: collapse;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
    
-    background-color: #5d70522a;
+    background-color: rgba(61, 61, 61, 0.041);
     min-width: 300px;
     margin: 10px auto;
     &__head {
@@ -60,7 +63,7 @@ small {
         color: blanchedalmond;
     }
     &__body {
-        background-color: rgba(61, 61, 61, 0.089);
+        background-color: rgba(61, 61, 61, 0.041);
 
     }
     &__body tr:last-of-type {
@@ -79,7 +82,7 @@ td, th /* Toutes les cellules des tableaux... */ {
 //Btn vider panier
 .clearpanier {
     padding: 0.5rem 1rem 00.5rem 1rem;
-    background: #5d70522a;
+    background: rgba(61, 61, 61, 0.041);
     display: block;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
     margin: 15px auto;

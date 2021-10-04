@@ -2,7 +2,7 @@ import { getTeddy } from "./function.js"
 
 // Contenu panier sous forme d'array accessible depuis la page panier
 const panier = JSON.parse(localStorage.getItem("panier"))
-console.log(panier)
+
 
 // Vider le panier
 
@@ -16,22 +16,20 @@ document.querySelector(".clearpanier").addEventListener('click', () => {
 async function main() {
     const teddiesPromises = panier.map(item => getTeddy(item.id))
     const teddies = await Promise.all(teddiesPromises)
-    console.log(teddies)
-    panier.forEach(cartItem => { // cartItem c'est qoui ici? nom d'une fonction?
-        const teddy = teddies.find(teddy => teddy._id === cartItem.id)
 
+    panier.forEach(cartItem => { // cartItem c'est quoi ici? nom d'une fonction? ******************************** ??
+        const teddy = teddies.find(teddy => teddy._id === cartItem.id)
+        console.table(teddy)
+        console.table(cartItem)
         function appelPanier() {
             (addTeddyToDom(teddy, cartItem))
         }
+        
         appelPanier()
     })
 }
 
 // 
-
-
-console.log(panier)
-
 
 main()
 
@@ -39,22 +37,28 @@ main()
 
 const templateItemCart = document.querySelector(".itemcart").content
 const articles = document.querySelector(".tableaupanier")
-function addTeddyToDom(teddy, panier) {    
+function addTeddyToDom(teddy, panier) {   // teddy et panier ici ??? ***
     const article = templateItemCart.cloneNode(true)
 
     //Calcul total et convert currency
     const price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     const priceTotal = panier.quantity * teddy.price
-    const priceTotaleuro= new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
+    const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
     // Inject DOM
     article.querySelector(".tname").innerText = teddy.name
     article.querySelector(".tqty").innerText = panier.quantity
     article.querySelector(".tprice").innerText = price
-    article.querySelector(".ttotal").innerText = priceTotaleuro
+    article.querySelector(".ttotal").innerText = priceTotalEuro
     articles.appendChild(article)
+
 
 }
 
+// let prixTotalCalcul = [];
+
+// for (let p = 0; p < panier.length; p++) {
+//     console.log(panier[p].id)
+// }
 
 
 

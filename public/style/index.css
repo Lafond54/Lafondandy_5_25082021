@@ -461,7 +461,6 @@ body {
   flex-wrap: wrap;
   flex-direction: column;
 }
-
 label {
   display: block;
   width: 150px;
@@ -524,7 +523,7 @@ label {
 .tableaupanier {
   border-collapse: collapse;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
-  background-color: #5d70522a;
+  background-color: rgba(61, 61, 61, 0.041);
   min-width: 300px;
   margin: 10px auto;
 }
@@ -533,7 +532,7 @@ label {
   color: blanchedalmond;
 }
 .tableaupanier__body {
-  background-color: rgba(61, 61, 61, 0.089);
+  background-color: rgba(61, 61, 61, 0.041);
 }
 .tableaupanier__body tr:last-of-type {
   border-bottom: 5px solid #383838;
@@ -548,7 +547,7 @@ td, th {
 
 .clearpanier {
   padding: 0.5rem 1rem 0.5rem 1rem;
-  background: #5d70522a;
+  background: rgba(61, 61, 61, 0.041);
   display: block;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
   margin: 15px auto;

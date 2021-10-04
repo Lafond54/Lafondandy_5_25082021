@@ -82,11 +82,11 @@
                 <form class="formmain" action="" method="POST" id="purchaseform">
                     <div class="">
                         <label for="firstname" class="label">Prénom :</label>
-                        <input type="text" name="firstname" id="firstname" class="input" required />
+                        <input type="text" name="firstname" id="firstname" class="input" required pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
                     </div>
                     <div class="">
                         <label for="lastname" class="label">Nom :</label>
-                        <input type="text" name="lastname" id="lastname" class="input" required />
+                        <input type="text" name="lastname" id="lastname" class="input" required pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"/>
                     </div>
                     <div class="">
                         <label for="email" class="label">Adresse e-mail :</label>
@@ -97,15 +97,15 @@
                         <label for="adress" class="label">Adresse :</label>
                         <input type="text" name="adress" id="adress" class="input" required />
                     </div>
-                    <div class="">
+                    <div class="formmain__zipcode">
                         <label for="zipcode" class="label">Code postal :</label>
-                        <input type="text" name="zipcode" id="zipcode" class="input" required />
+                        <input type="number" name="zipcode" id="zipcode" class="input" required min ="0" max="100000" />
                     </div>
                     <div class="">
                         <label for="city" class="label">Ville :</label>
-                        <input type="text" name="city" id="city" class="input" required />
+                        <input type="text" name="city" id="city" class="input" required pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"/>
                     </div>
-                    <button href="confirmation.html" class="btnpurchase">Passer ma commande</button>
+                    <input type="submit" href="confirmation.html" class="btnpurchase" value="Passer ma commande">
                 </form>
 
             </div>
