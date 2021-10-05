@@ -2,7 +2,7 @@ import { getTeddy } from "./function.js"
 
 // Contenu panier sous forme d'array accessible depuis la page panier
 const panier = JSON.parse(localStorage.getItem("panier"))
-
+console.log(panier)
 
 // Vider le panier
 
@@ -17,15 +17,26 @@ async function main() {
     const teddiesPromises = panier.map(item => getTeddy(item.id))
     const teddies = await Promise.all(teddiesPromises)
 
-    panier.forEach(cartItem => { // cartItem c'est quoi ici? nom d'une fonction? ******************************** ??
+    panier.forEach(cartItem => { // cartItem c'est quoi ici? nom d'une fonction? ************* ??
         const teddy = teddies.find(teddy => teddy._id === cartItem.id)
-        console.table(teddy)
-        console.table(cartItem)
+
+        // console.table(teddy)
+        // console.table(cartItem)
         function appelPanier() {
             (addTeddyToDom(teddy, cartItem))
         }
-        
+
         appelPanier()
+
+
+    })
+    // calculer prix total ***
+    panier.forEach(cartItem => { // cartItem c'est quoi ici? nom d'une fonction? ************** ??
+        const teddy = teddies.find(teddy => teddy._id === cartItem.id)
+        //tableau pour réunir prix et quantité
+        let prixTotalCalcul = [];
+        prixTotalCalcul.push(cartItem.quantity, teddy.price) //Pourquoi il créé trois tableau et pas q'un?
+        console.table(prixTotalCalcul)
     })
 }
 
@@ -37,6 +48,7 @@ main()
 
 const templateItemCart = document.querySelector(".itemcart").content
 const articles = document.querySelector(".tableaupanier")
+
 function addTeddyToDom(teddy, panier) {   // teddy et panier ici ??? ***
     const article = templateItemCart.cloneNode(true)
 
@@ -54,12 +66,11 @@ function addTeddyToDom(teddy, panier) {   // teddy et panier ici ??? ***
 
 }
 
-// let prixTotalCalcul = [];
 
 // for (let p = 0; p < panier.length; p++) {
 //     console.log(panier[p].id)
 // }
-
+// console.log()
 
 
 
