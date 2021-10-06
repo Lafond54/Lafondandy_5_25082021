@@ -35,9 +35,15 @@ async function main() {
         const teddy = teddies.find(teddy => teddy._id === cartItem.id)
         //tableau pour réunir prix et quantité
         let prixTotalCalcul = [];
-        prixTotalCalcul.push(cartItem.quantity, teddy.price) //Pourquoi il créé trois tableau et pas q'un?
+        prixTotalCalcul.push(cartItem.quantity, teddy.price) // Pourquoi il créé trois tableau et pas q'un?
         console.table(prixTotalCalcul)
+
+        
+        // let prixTotalFinal = prixTotalCalcul[1] * prixTotalCalcul[2]
+        // console.log(prixTotalFinal)  ******* // NaN
     })
+
+
 }
 
 // 
