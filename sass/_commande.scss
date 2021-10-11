@@ -74,7 +74,7 @@ small {
 
 td, th /* Toutes les cellules des tableaux... */ {
     border: 1px solid black;
-    padding: 15px;
+    padding: 10px;
     text-align: center;
     vertical-align: middle;
 }
@@ -85,11 +85,25 @@ td, th /* Toutes les cellules des tableaux... */ {
     background: rgba(61, 61, 61, 0.041);
     display: block;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
-    margin: 15px auto;
+    margin: 2px auto;
     font-size: 1rem;
 
     
     &:hover {
         background: linear-gradient(170deg, ($secondaire), ($primaire));
     }
+}
+
+.totalfinal {
+    font-size: 1.2rem;
+    margin: 1rem;
+}
+
+.paniervide{
+    font-size: 1.4rem;
+    padding: 1rem;
+}
+
+.lienretour {    
+    font-style: oblique;
 }

@@ -4,6 +4,15 @@ import { getTeddy } from "./function.js"
 const panier = JSON.parse(localStorage.getItem("panier"))
 console.log(panier)
 
+
+// Afficher panier vide (et cacher les elements inutiles si panier est vide)
+
+if (panier === null) {
+    console.log(`salut: `+  panier)
+    document.querySelector(".clearpanier").style.display = 'none'
+    document.querySelector(".tableaupanier").style.display = 'none'
+    document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html">cette page</a>.`
+}
 // Vider le panier
 
 document.querySelector(".clearpanier").addEventListener('click', () => {
@@ -22,28 +31,25 @@ async function main() {
 
         // console.table(teddy)
         // console.table(cartItem)
-        function appelPanier() {
-            (addTeddyToDom(teddy, cartItem))
-        }
 
-        appelPanier()
+        addTeddyToDom(teddy, cartItem.quantity)
 
 
     })
+
     // calculer prix total ***
+    let prixTotalCalcul = 0;
     panier.forEach(cartItem => { // cartItem c'est quoi ici? nom d'une fonction? ************** ??
         const teddy = teddies.find(teddy => teddy._id === cartItem.id)
-        //tableau pour réunir prix et quantité
-        let prixTotalCalcul = [];
-        prixTotalCalcul.push(cartItem.quantity, teddy.price) // Pourquoi il créé trois tableau et pas q'un?
-        console.table(prixTotalCalcul)
 
-        
-        // let prixTotalFinal = prixTotalCalcul[1] * prixTotalCalcul[2]
-        // console.log(prixTotalFinal)  ******* // NaN
+        prixTotalCalcul += cartItem.quantity * teddy.price
+
     })
+    console.log(prixTotalCalcul)
 
-
+    //Affichage du prix total
+    const prixTotalCalculEnEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prixTotalCalcul / 100)
+    document.querySelector(".totalfinal").innerText = `Le montant total de votre panier est de : ` + prixTotalCalculEnEuro
 }
 
 // 
@@ -55,16 +61,16 @@ main()
 const templateItemCart = document.querySelector(".itemcart").content
 const articles = document.querySelector(".tableaupanier")
 
-function addTeddyToDom(teddy, panier) {   // teddy et panier ici ??? ***
+function addTeddyToDom(teddy, quantite) {
     const article = templateItemCart.cloneNode(true)
 
     //Calcul total et convert currency
     const price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
-    const priceTotal = panier.quantity * teddy.price
+    const priceTotal = quantite * teddy.price
     const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
     // Inject DOM
     article.querySelector(".tname").innerText = teddy.name
-    article.querySelector(".tqty").innerText = panier.quantity
+    article.querySelector(".tqty").innerText = quantite
     article.querySelector(".tprice").innerText = price
     article.querySelector(".ttotal").innerText = priceTotalEuro
     articles.appendChild(article)
