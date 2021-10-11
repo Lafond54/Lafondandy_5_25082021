@@ -405,6 +405,14 @@ body {
   padding-top: 3rem;
 }
 
+.smallajout {
+  display: block;
+  background-color: rgba(100, 185, 114, 0.842);
+  font-size: 1.2rem;
+  margin: 15px auto;
+  text-align: center;
+}
+
 .confirm {
   display: flex;
   flex-direction: column;

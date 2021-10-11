@@ -59,19 +59,20 @@
 
 
 
-                        <table class="tableaupanier">
+                    <table class="tableaupanier">
 
-                            <thead class="tableaupanier__head">
-                                <th>Produit</th>
-                                <th>Quantité</th>
-                                <th>Prix</th>
-                                <th>Total</th>
-                                <th> - </th>
-                            </thead>
+                        <thead class="tableaupanier__head">
+                            <th>Produit</th>
+                            <th>Qté</th>
+                            <th>Prix</th>
+                            <th>Modifier Qté</th>
+                            <th> - </th>
+                            <th>Total</th>
+                        </thead>
 
-                        </table>
+                    </table>
 
-                    
+
                     <button class="clearpanier">Vider le panier</button>
                     <div class="totalfinal"></div>
                 </div>
@@ -84,11 +85,13 @@
                 <form class="formmain" action="" method="POST" id="purchaseform">
                     <div class="">
                         <label for="firstname" class="label">Prénom :</label>
-                        <input type="text" name="firstname" id="firstname" class="input" required pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
+                        <input type="text" name="firstname" id="firstname" class="input" required
+                            pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
                     </div>
                     <div class="">
                         <label for="lastname" class="label">Nom :</label>
-                        <input type="text" name="lastname" id="lastname" class="input" required pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"/>
+                        <input type="text" name="lastname" id="lastname" class="input" required
+                            pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" />
                     </div>
                     <div class="">
                         <label for="email" class="label">Adresse e-mail :</label>
@@ -101,11 +104,12 @@
                     </div>
                     <div class="formmain__zipcode">
                         <label for="zipcode" class="label">Code postal :</label>
-                        <input type="number" name="zipcode" id="zipcode" class="input" required min ="0" max="100000" />
+                        <input type="number" name="zipcode" id="zipcode" class="input" required min="0" max="100000" />
                     </div>
                     <div class="">
                         <label for="city" class="label">Ville :</label>
-                        <input type="text" name="city" id="city" class="input" required pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$"/>
+                        <input type="text" name="city" id="city" class="input" required
+                            pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" />
                     </div>
                     <input type="submit" href="confirmation.html" class="btnpurchase" value="Passer ma commande">
                 </form>
@@ -135,9 +139,16 @@
         <tbody class=tableaupanier__body>
             <td class="tname"></td>
             <td class="tqty"></td>
-            <td class="tprice"></td>
+            <td class="tprice"></td>            
+            <td class="modifierquantite">
+                <form class="selectqtymain" action="" method="POST" id="selectqty">
+                <input class="selectqty" type="number" id="selectqty" name="selectqty" value="" min="1" max="10">
+                <input type="submit" href="" class="" value="✔">
+            </form>
+                
+            </td>
+            <td class="deleteitem"><i class="far fa-trash-alt"></i></td>
             <td class="ttotal"></td>
-            <td class="deleteitem"></td>
         </tbody>
 
 

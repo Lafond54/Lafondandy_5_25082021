@@ -18,7 +18,7 @@ console.log(id)
 
 //Variable http de l'API
 let teddiesApiUrl = "http://localhost:3000/api/teddies"
-
+console.table(teddiesApiUrl)
 //Variable egale à Concatenation Url + ID
 let teddyApiUrl = teddiesApiUrl.concat(`/` + id)
 
@@ -74,11 +74,23 @@ function addTeddyToDom(teddy) {            //???? teddy = data ???? Par quel moy
     document.querySelector(".card__d__add").addEventListener('click', (e) => {
         e.preventDefault()
         addTeddyToCart(teddy)
+        notifAjoutPanier()
     })
 
 }
 
 
+
+// Notif ajout panier
+function notifAjoutPanier () {
+
+let small = document.querySelector(".smallajout")
+            small.innerHTML = `✔ Votre article a été ajouté au panier`           
+            small.classList.add('.ajout')
+}
+
+
+//
 async function refresh() {
     articles.innerHTML = ""
     const teddy = await getTeddy(teddyApiUrl)  // Pourquoi je peux pas recuperer teddy dans d'autres endroits que ces fonctions là

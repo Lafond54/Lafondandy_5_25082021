@@ -73,6 +73,7 @@ function addTeddyToDom(teddy, quantite) {
     article.querySelector(".tqty").innerText = quantite
     article.querySelector(".tprice").innerText = price
     article.querySelector(".ttotal").innerText = priceTotalEuro
+    // article.querySelector(".modifierquantite").innerText = <i class="far fa-trash-alt"></i>
     articles.appendChild(article)
 
 

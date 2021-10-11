@@ -57,6 +57,7 @@
                 </div>
 
                 <a href="" class="card__d__add">Ajouter au Panier</a>
+                <small class="smallajout"></small>
             </div>
         </section>
     </div>
@@ -94,9 +95,8 @@
 
             <div class="flexgrow"></div>
             <div class="card__d__price">Prix : 29,00€ (PRICE)</div>
-            <div class="selectcolor">
-
-                <form action="post" name="formulairecouleur" autocomplete="on">
+            <div class="selectcolor">                            
+               <form action="post" name="formulaire" autocomplete="on">                    
                     <label for="color">Choisir la couleur:</label>
                     <select name="choixcouleur" id="color" required>
 
@@ -107,6 +107,8 @@
                 </form>
 
             </div>
+            <div class="selectqty"><label for="selectqtyid">Choisir la quantité : </label>
+                <input class="selectqtyid" type="number" id="selectqtyid" name="selectqtyid" value="1" min="1" max="10"></div>
         </div>
 
     </template>
