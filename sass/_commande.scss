@@ -107,3 +107,13 @@ td, th /* Toutes les cellules des tableaux... */ {
 .lienretour {    
     font-style: oblique;
 }
+
+
+// Selection quantité
+.modifierquantite {
+&__btn { color: rgb(255, 255, 255);
+    padding: 0px 7px 0 7px;
+    background: linear-gradient(170deg, ($secondaire), ($primaire))
+    
+}
+ }

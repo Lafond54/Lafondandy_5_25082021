@@ -83,9 +83,9 @@ function addTeddyToDom(teddy) {            //???? teddy = data ???? Par quel moy
 
 // Notif ajout panier
 function notifAjoutPanier () {
-
+const qtyAjoute = document.getElementById("selectqtyid").value
 let small = document.querySelector(".smallajout")
-            small.innerHTML = `✔ Votre article a été ajouté au panier`           
+            small.innerHTML = `✔ Vous avez ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`         
             small.classList.add('.ajout')
 }
 
@@ -117,25 +117,22 @@ function addTeddyToCart(teddy) {
 
     //variable teddyCart = chercher dans le panier si il exite un Id stocké dans teddyCart correpondant à un ID de l'objet teddy
     let teddyCart = panier.find((teddyCart) => teddyCart.id === teddy._id)
-    
+    console.log(teddyCart)
     // Si teddyCart est faux, alors on injecte une valeur par defaut dans teddycart
     if (!teddyCart) {
         teddyCart = { id: teddy._id, quantity: 0 }
 
         panier.push(teddyCart)
     }
-
-    //si teddyCart est vrai, alors on Incrémente sur la quantité 
-    teddyCart.quantity++    
+   
+    //si teddyCart est vrai, alors on injecte la quantité presente dans l'input selectQty
+    teddyCart.quantity = document.getElementById("selectqtyid").value
     //Duo clé valeur ajouté dans le localstorage en chaine de caractere
     localStorage.setItem("panier", JSON.stringify(panier))
 
 }
 
-
-
-
-
+    
 
 
 

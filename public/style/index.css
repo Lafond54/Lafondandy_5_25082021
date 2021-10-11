@@ -579,4 +579,10 @@ td, th {
   font-style: oblique;
 }
 
+.modifierquantite__btn {
+  color: white;
+  padding: 0px 7px 0 7px;
+  background: linear-gradient(170deg, #E3CD8B, #5D7052);
+}
+
 /*# sourceMappingURL=index.css.map */
