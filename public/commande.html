@@ -100,7 +100,7 @@
                     </div>
                     <div class="">
                         <label for="adress" class="label">Adresse :</label>
-                        <input type="text" name="adress" id="adress" class="input" required />
+                        <textarea name="adress" id="adress" class="input" required ></textarea>
                     </div>
                     <div class="formmain__zipcode">
                         <label for="zipcode" class="label">Code postal :</label>
@@ -141,12 +141,9 @@
             <td class="tqty"></td>
             <td class="tprice"></td>
             <td class="modifierquantite">
-                <form class="selectqtymain" action="" method="POST" id="selectqty">
-                    <input class="selectqty" type="number" id="selectqty" name="selectqty" value="" min="1" max="10">
-                    <input type="submit" href="" class="modifierquantite__btn" value="✔">
-                </form>
+
             </td>
-            <td class="deleteitem"><a href="" class="deleteitem__btn"><i class="far fa-trash-alt"></i></a></td>
+            <td class="deleteitem"></td>
             <td class="ttotal"></td>
         </tbody>
 

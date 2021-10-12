@@ -8,7 +8,7 @@ console.log(panier)
 // Afficher panier vide (et cacher les elements inutiles si panier est vide)
 
 if (panier === null) {
-    console.log(`salut: `+  panier)
+    console.log(`salut: ` + panier)
     document.querySelector(".clearpanier").style.display = 'none'
     document.querySelector(".tableaupanier").style.display = 'none'
     document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html">cette page</a>.`
@@ -68,16 +68,43 @@ function addTeddyToDom(teddy, quantite) {
     const price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     const priceTotal = quantite * teddy.price
     const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
+    // const qtyActuelle = document.getElementById('myField').value
     // Inject DOM
     article.querySelector(".tname").innerText = teddy.name
     article.querySelector(".tqty").innerText = quantite
     article.querySelector(".tprice").innerText = price
     article.querySelector(".ttotal").innerText = priceTotalEuro
-    // article.querySelector(".modifierquantite").innerText = <i class="far fa-trash-alt"></i>
+
+    article.querySelector(".deleteitem").innerHTML = `<a href="" class="deleteitem__btn"><i class="far fa-trash-alt"></i></a>`
+
+    article.querySelector(".modifierquantite").innerHTML = `<form class="selectqtymain" action="" method="POST" id="selectqty">
+                                                                 <input class="selectqty" type="number" id="selectqty" name="selectqty" value="" min="1" max="10">
+                                                                 <input type="submit" href="" class="modifierquantite__btn" value="✔">
+                                                             </form>`
     articles.appendChild(article)
 
 
 }
+
+
+
+// Supprimer un article du panier
+
+// document.querySelector(".deleteitem").addEventListener('click', () => {
+//     removeLocalStorageValues()
+//     main()
+// })
+
+
+
+
+
+
+
+
+
+
+
 
 
 // for (let p = 0; p < panier.length; p++) {
@@ -183,35 +210,3 @@ const validEmail = function (inputEmail) {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-// const promise1 = Promise.resolve(3);
-// const promise2 = 42;
-// const promise3 = new Promise((resolve, reject) => {
-//     setTimeout(resolve, 100, 'foo');
-// });
-
-// Promise.all([promise1, promise2, promise3]).then((values) => {
-//     console.log(values);
-// });
-// // expected output: Array [3, 42, "foo"]
-
-//  //////////////////////////////////////////////////////////////////////
-
-// async () => {
-//     const products = await Promise.all(
-//         cartProducts
-//         .reduce((acc, cartProduct) => {
-//             acc.add(cartProduct.id)
-//         }, new Set())
-//         .map(getProductData)
-//     )

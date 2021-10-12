@@ -58,17 +58,18 @@ async function getTeddy(Url) {
 
 // fonction modif DOM
 
-function addTeddyToDom(teddy) {            //???? teddy = data ???? Par quel moyen ?
+function addTeddyToDom(teddy) {          
     const article = templatecard.cloneNode(true)
+    
     let price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     article.querySelector(".card__divimg__item").src = teddy.imageUrl
     article.querySelector(".card__d__name").innerText = teddy.name
     article.querySelector(".card__d__price").innerText = price
     article.querySelector(".card__d__descr").innerText = teddy.description
-    //article.querySelector(".article").setAttribute("href", "produit.html?id=" + teddy._id)
+    // article.getElementById('color').value = teddy.colors        *** Marche pas ***
     articles.appendChild(article)
 
-    console.log(teddy)
+    console.log(teddy.colors)
 
     // Ecoute du bouton enclenchant la fonction d'ajout d'un nonours dans le panier
     document.querySelector(".card__d__add").addEventListener('click', (e) => {
@@ -76,6 +77,15 @@ function addTeddyToDom(teddy) {            //???? teddy = data ???? Par quel moy
         addTeddyToCart(teddy)
         notifAjoutPanier()
     })
+
+//     //Boucle sur les couleurs
+// let tableauColors = []
+// for (let p = 0; p < teddy.colors.length; p++) {
+//     console.log(teddy.colors[p])
+//     tableauColors.push(teddy.colors[p])
+//     console.table(tableauColors)
+// }
+// console.log()
 
 }
 
@@ -93,7 +103,7 @@ let small = document.querySelector(".smallajout")
 //
 async function refresh() {
     articles.innerHTML = ""
-    const teddy = await getTeddy(teddyApiUrl)  // Pourquoi je peux pas recuperer teddy dans d'autres endroits que ces fonctions là
+    const teddy = await getTeddy(teddyApiUrl)  
     addTeddyToDom(teddy)
 
 }
@@ -117,7 +127,7 @@ function addTeddyToCart(teddy) {
 
     //variable teddyCart = chercher dans le panier si il exite un Id stocké dans teddyCart correpondant à un ID de l'objet teddy
     let teddyCart = panier.find((teddyCart) => teddyCart.id === teddy._id)
-    console.log(teddyCart)
+    
     // Si teddyCart est faux, alors on injecte une valeur par defaut dans teddycart
     if (!teddyCart) {
         teddyCart = { id: teddy._id, quantity: 0 }
