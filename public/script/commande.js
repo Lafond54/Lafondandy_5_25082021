@@ -22,9 +22,11 @@ document.querySelector(".clearpanier").addEventListener('click', () => {
 
 })
 
+// main ***********
 async function main() {
-    const teddiesPromises = panier.map(item => getTeddy(item.id))
+    const teddiesPromises = panier.map(item => getTeddy(item.id)) //commande.js:27 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'map')
     const teddies = await Promise.all(teddiesPromises)
+
 
     panier.forEach(cartItem => { // cartItem c'est quoi ici? nom d'une fonction? ************* ??
         const teddy = teddies.find(teddy => teddy._id === cartItem.id)
@@ -37,9 +39,18 @@ async function main() {
 
     })
 
-    // calculer prix total ***
+    prixTotalCalculEnEuro()
+
+}
+main()
+
+
+// *** // Fonction prix final en euro****
+async function prixTotalCalculEnEuro() {  // Obligé d'utiliser await async afin de recuprer const teddies dans la fonction ?
+    const teddiesPromises = panier.map(item => getTeddy(item.id))  
+    const teddies = await Promise.all(teddiesPromises)
     let prixTotalCalcul = 0;
-    panier.forEach(cartItem => { // cartItem c'est quoi ici? nom d'une fonction? ************** ??
+    panier.forEach(cartItem => {
         const teddy = teddies.find(teddy => teddy._id === cartItem.id)
 
         prixTotalCalcul += cartItem.quantity * teddy.price
@@ -47,35 +58,33 @@ async function main() {
     })
     console.log(prixTotalCalcul)
 
-    //Affichage du prix total
+    //Affichage du prix total mettre en fonction a part
     const prixTotalCalculEnEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prixTotalCalcul / 100)
     document.querySelector(".totalfinal").innerText = `Le montant total de votre panier est de : ` + prixTotalCalculEnEuro
 }
 
-// 
-
-main()
 
 
-
+// DOM panier*********
 const templateItemCart = document.querySelector(".itemcart").content
 const articles = document.querySelector(".tableaupanier")
 
 function addTeddyToDom(teddy, quantite) {
-    const article = templateItemCart.cloneNode(true)
+    const article = templateItemCart.querySelector(".tableaupanier__body").cloneNode(true)
+
 
     //Calcul total et convert currency
     const price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     const priceTotal = quantite * teddy.price
     const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
-    // const qtyActuelle = document.getElementById('myField').value
+
     // Inject DOM
     article.querySelector(".tname").innerText = teddy.name
     article.querySelector(".tqty").innerText = quantite
     article.querySelector(".tprice").innerText = price
     article.querySelector(".ttotal").innerText = priceTotalEuro
 
-    article.querySelector(".deleteitem").innerHTML = `<a href="" class="deleteitem__btn"><i class="far fa-trash-alt"></i></a>`
+
 
     article.querySelector(".modifierquantite").innerHTML = `<form class="selectqtymain" action="" method="POST" id="selectqty">
                                                                  <input class="selectqty" type="number" id="selectqty" name="selectqty" value="" min="1" max="10">
@@ -83,17 +92,29 @@ function addTeddyToDom(teddy, quantite) {
                                                              </form>`
     articles.appendChild(article)
 
+    console.log(article)
+
+    // Supprimer une ligne du panier
+    article.querySelector(".deleteitem").addEventListener('click', (e) => {
+        e.preventDefault()
+        const index = panier.findIndex(cartItem => cartItem.id === teddy._id)
+        panier.splice(index, 1)
+
+        localStorage.setItem("panier", JSON.stringify(panier))
+        console.log(article)
+        article.remove()
+        // Reafficher a nouveau le Prix Final après suppression d'une ligne     
+        document.querySelector(".totalfinal").innerText = ""
+        prixTotalCalculEnEuro()
+    })
 
 }
 
 
 
-// Supprimer un article du panier
 
-// document.querySelector(".deleteitem").addEventListener('click', () => {
-//     removeLocalStorageValues()
-//     main()
-// })
+
+
 
 
 

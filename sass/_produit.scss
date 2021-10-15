@@ -4,14 +4,13 @@
 
 //carte produit
 .articleproduit {
-        display: flex;    
+    display: flex;
 
     @media (max-width: 1000px) {
         flex-direction: column;
     }
 }
 .card {
-
     &__divimg {
         margin: 5px;
     }
@@ -22,7 +21,6 @@
         border-radius: 12px 0px 0px 0px;
         @media (max-width: 1000px) {
             border-radius: 12px 12px 0px 0px;
-           
         }
     }
 }
@@ -45,30 +43,27 @@
     }
 
     &__price {
-
         padding-top: 2rem;
         font-size: 1.2rem;
         font-weight: lighter;
     }
     &__add {
         display: block;
-        margin:auto;
+        margin: auto;
         width: 190px;
         @include btnrose;
         margin-bottom: 1rem;
         margin-top: 1rem;
-
+        border-style: none;
     }
 }
-.flexgrow { 
+.flexgrow {
     flex-grow: 1; //marche pas
 }
 
 .selectcolor {
     display: flex;
     padding-top: 3rem;
-
-
 }
 
 // Notif ajout produit panier
@@ -78,4 +73,29 @@
     font-size: 1.2rem;
     margin: 15px auto;
     text-align: center;
+    opacity: 1;
+    animation: smallajoutanim 5s ease-in;
+    @keyframes smallajoutanim {
+        0% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 0.9;
+        }
+        92% {
+            opacity: 0.1;
+        }
+        94% {
+            opacity: 0.9;
+        }
+        96% {
+            opacity: 0.1;
+        }
+        98% {
+            opacity: 0.9;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
 }

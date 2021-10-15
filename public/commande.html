@@ -60,16 +60,14 @@
 
 
                     <table class="tableaupanier">
-
-                        <thead class="tableaupanier__head">
+                        <tr class="tableaupanier__head">
                             <th>Produit</th>
                             <th>Qté</th>
                             <th>Prix</th>
                             <th>Modifier Qté</th>
                             <th> - </th>
                             <th>Total</th>
-                        </thead>
-
+                        </tr>
                     </table>
 
 
@@ -100,7 +98,7 @@
                     </div>
                     <div class="">
                         <label for="adress" class="label">Adresse :</label>
-                        <textarea name="adress" id="adress" class="input" required ></textarea>
+                        <textarea name="adress" id="adress" class="input" required></textarea>
                     </div>
                     <div class="formmain__zipcode">
                         <label for="zipcode" class="label">Code postal :</label>
@@ -136,16 +134,14 @@
 
     </footer>
     <template class="itemcart">
-        <tbody class=tableaupanier__body>
+        <tr class="tableaupanier__body">
             <td class="tname"></td>
             <td class="tqty"></td>
             <td class="tprice"></td>
-            <td class="modifierquantite">
-
-            </td>
-            <td class="deleteitem"></td>
+            <td class="modifierquantite"></td>
+            <td class="deleteitem"><i class="far fa-trash-alt"></i></td>
             <td class="ttotal"></td>
-        </tbody>
+        </tr>
 
 
     </template>

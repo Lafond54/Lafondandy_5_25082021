@@ -23,11 +23,6 @@ console.table(teddiesApiUrl)
 let teddyApiUrl = teddiesApiUrl.concat(`/` + id)
 
 
-// Test réponse de l'api (a supprimer)
-fetch(teddyApiUrl)
-    .then(res => res.json())
-    .then(data => console.log(data))
-
 
 
 // ******************************
@@ -58,52 +53,65 @@ async function getTeddy(Url) {
 
 // fonction modif DOM
 
-function addTeddyToDom(teddy) {          
+function addTeddyToDom(teddy) {
     const article = templatecard.cloneNode(true)
-    
+
     let price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     article.querySelector(".card__divimg__item").src = teddy.imageUrl
     article.querySelector(".card__d__name").innerText = teddy.name
     article.querySelector(".card__d__price").innerText = price
     article.querySelector(".card__d__descr").innerText = teddy.description
-    // article.getElementById('color').value = teddy.colors        *** Marche pas ***
+    // article.getElementById('color').value = teddy.colors        *** Marche pas *** boucle for of ou forEach document.createElement de type option (select?)
     articles.appendChild(article)
 
-    console.log(teddy.colors)
+    // console.log(teddy.colors)
 
     // Ecoute du bouton enclenchant la fonction d'ajout d'un nonours dans le panier
     document.querySelector(".card__d__add").addEventListener('click', (e) => {
         e.preventDefault()
         addTeddyToCart(teddy)
         notifAjoutPanier()
+        setTimeout(function () {
+            document.querySelector(".smallajout").innerHTML = '';
+        }, 4500)
+
     })
 
-//     //Boucle sur les couleurs
-// let tableauColors = []
-// for (let p = 0; p < teddy.colors.length; p++) {
-//     console.log(teddy.colors[p])
-//     tableauColors.push(teddy.colors[p])
-//     console.table(tableauColors)
-// }
-// console.log()
+    // ****** Liste déroulante choix couleurs ***********
+    // Selection du Parent de la liste de choix couleur
+    const parent = document.querySelector(".formulaire")
+    //Create and append select list
+    const selectList = document.getElementById("color");
+    parent.appendChild(selectList);
+
+    // Pour chacune des couleurs on injecte le text et la valeur de la liste d'options   
+    teddy.colors.forEach(function (element) {
+
+        const option = document.createElement("option")
+        option.value = element
+        option.text = element
+        selectList.appendChild(option)     // Required ne marche pas!
+    })
+
+
 
 }
 
 
 
 // Notif ajout panier
-function notifAjoutPanier () {
-const qtyAjoute = document.getElementById("selectqtyid").value
-let small = document.querySelector(".smallajout")
-            small.innerHTML = `✔ Vous avez ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`         
-            small.classList.add('.ajout')
+function notifAjoutPanier() {
+    const qtyAjoute = document.getElementById("selectqtyid").value
+    let small = document.querySelector(".smallajout")
+    small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
+    small.classList.add()
 }
 
 
 //
 async function refresh() {
     articles.innerHTML = ""
-    const teddy = await getTeddy(teddyApiUrl)  
+    const teddy = await getTeddy(teddyApiUrl)
     addTeddyToDom(teddy)
 
 }
@@ -127,22 +135,22 @@ function addTeddyToCart(teddy) {
 
     //variable teddyCart = chercher dans le panier si il exite un Id stocké dans teddyCart correpondant à un ID de l'objet teddy
     let teddyCart = panier.find((teddyCart) => teddyCart.id === teddy._id)
-    
+
     // Si teddyCart est faux, alors on injecte une valeur par defaut dans teddycart
     if (!teddyCart) {
         teddyCart = { id: teddy._id, quantity: 0 }
 
         panier.push(teddyCart)
     }
-   
+
     //si teddyCart est vrai, alors on injecte la quantité presente dans l'input selectQty
-    teddyCart.quantity = document.getElementById("selectqtyid").value
+    teddyCart.quantity += parseInt(document.getElementById("selectqtyid").value)
     //Duo clé valeur ajouté dans le localstorage en chaine de caractere
     localStorage.setItem("panier", JSON.stringify(panier))
 
 }
 
-    
+
 
 
 
