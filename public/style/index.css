@@ -20,7 +20,7 @@ h1 {
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
-  background: white;
+  background: black;
   height: 100vh;
   display: flex;
   flex-direction: column;

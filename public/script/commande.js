@@ -2,7 +2,7 @@ import { getTeddy } from "./function.js"
 
 // Contenu panier sous forme d'array accessible depuis la page panier
 const panier = JSON.parse(localStorage.getItem("panier"))
-console.log(panier)
+console.log(panier[1])
 
 
 // Afficher panier vide (et cacher les elements inutiles si panier est vide)
@@ -47,7 +47,7 @@ main()
 
 // *** // Fonction prix final en euro****
 async function prixTotalCalculEnEuro() {  // Obligé d'utiliser await async afin de recuprer const teddies dans la fonction ?
-    const teddiesPromises = panier.map(item => getTeddy(item.id))  
+    const teddiesPromises = panier.map(item => getTeddy(item.id))
     const teddies = await Promise.all(teddiesPromises)
     let prixTotalCalcul = 0;
     panier.forEach(cartItem => {
@@ -56,7 +56,7 @@ async function prixTotalCalculEnEuro() {  // Obligé d'utiliser await async afin
         prixTotalCalcul += cartItem.quantity * teddy.price
 
     })
-    console.log(prixTotalCalcul)
+    // console.log("prix total : " + prixTotalCalcul)
 
     //Affichage du prix total mettre en fonction a part
     const prixTotalCalculEnEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prixTotalCalcul / 100)
@@ -86,16 +86,31 @@ function addTeddyToDom(teddy, quantite) {
 
 
 
-    article.querySelector(".modifierquantite").innerHTML = `<form class="selectqtymain" action="" method="POST" id="selectqty">
-                                                                 <input class="selectqty" type="number" id="selectqty" name="selectqty" value="" min="1" max="10">
-                                                                 <input type="submit" href="" class="modifierquantite__btn" value="✔">
-                                                             </form>`
+    article.querySelector(".modifierquantite").innerHTML = `
+                                                             <form class="selectqtymain" name="selectqtymain" autocomplete="on">                    
+                                                             <label for="qtyitem"></label>
+                                                             <select name="choixcouleur" id="qtyitem" class="qtyitem" required>
+                                                                 <option value="">${quantite}</option>
+                                                                 <option value="1">1</option>
+                                                                 <option value="2">2</option>
+                                                                 <option value="3">3</option>
+                                                                 <option value="4">4</option>
+                                                                 <option value="5">5</option>
+                                                                 <option value="6">6</option>
+                                                                 <option value="7">7</option>
+                                                                 <option value="8">8</option>
+                                                                 <option value="9">9</option>
+                                                                 <option value="10">10</option>
+                                                             </select>
+                                                             <input type="submit" href="" class="modifierquantite__btn" value="✔">
+                                                         </form>`
     articles.appendChild(article)
 
-    console.log(article)
+
 
     // Supprimer une ligne du panier
     article.querySelector(".deleteitem").addEventListener('click', (e) => {
+        console.log(panier)
         e.preventDefault()
         const index = panier.findIndex(cartItem => cartItem.id === teddy._id)
         panier.splice(index, 1)
@@ -108,10 +123,46 @@ function addTeddyToDom(teddy, quantite) {
         prixTotalCalculEnEuro()
     })
 
+    // Modifier la quantité d'un article depuis le panier
+    let qtySelectionne = article.querySelector(".qtyitem")
+    qtySelectionne.addEventListener('change', function () {
+        // article.querySelector(".tqty").innerText = qtySelectionne.value
+        
+        const indexQty = panier.findIndex(cartItem => cartItem.id === teddy._id)
+       
+            // quantité de l'item dans le panier actuel
+            let valeurQtyPanier = panier[indexQty].quantity            
+
+
+        //    valeurQtyPanier = qtySelectionne.value // oK , ca change la quantite dans la console et ensuite ?
+
+            
+            // panier.splice(valeurQtyPanier, 1, qtySelectionne)
+            // panier.splice(panier.findIndex(({Qtysearch}) => Qtysearch == panier.quantity), 1, qtySelectionne);
+
+            console.log(panier) // n'affiche rien
+            localStorage.setItem("panier", JSON.stringify(panier))
+            
+        console.log("qty dans panier : " + valeurQtyPanier)       
+        console.log("index du panier n : " + indexQty)
+        
+         
+        // localStorage.setItem("panier", JSON.stringify(panier))
+    })
+
+
+
+    // // Ecouter changement de quantité pour agir ensuite sur le panier
+    // article.querySelector(".tqty").addEventListener('change', event => {
+    //     window.alert('prixChange' + event)
+    //     console.log("changement")
+    //     //   const value = event.target.value
+    //     //   panier = 
+    // })
+
+
+
 }
-
-
-
 
 
 
