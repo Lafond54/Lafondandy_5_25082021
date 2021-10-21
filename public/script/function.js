@@ -22,3 +22,8 @@ export async function getTeddy(id) {
 }
 
 
+export function getPanier () {
+
+    return JSON.parse(localStorage.getItem("panier")) || []
+}
+

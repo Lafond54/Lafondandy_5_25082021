@@ -1,8 +1,19 @@
-import { getTeddy } from "./function.js"
+import { getTeddy, getPanier } from "./function.js"
 
 // Contenu panier sous forme d'array accessible depuis la page panier
-const panier = JSON.parse(localStorage.getItem("panier"))
-console.log(panier[1])
+const panier = getPanier()
+console.log(panier)
+
+async function getTeddies() {
+    if (!getTeddies.teddies) {
+        const teddiesPromises = panier.map(item => getTeddy(item.id)) //commande.js:27 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'map')
+        getTeddies.teddies = await Promise.all(teddiesPromises)
+
+    }
+    return getTeddies.teddies
+}
+
+
 
 
 // Afficher panier vide (et cacher les elements inutiles si panier est vide)
@@ -24,11 +35,12 @@ document.querySelector(".clearpanier").addEventListener('click', () => {
 
 // main ***********
 async function main() {
-    const teddiesPromises = panier.map(item => getTeddy(item.id)) //commande.js:27 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'map')
-    const teddies = await Promise.all(teddiesPromises)
+    //commande.js:27 Uncaught (in promise) TypeError: Cannot read properties of null (reading 'map')
+
+    const teddies = await getTeddies()
 
 
-    panier.forEach(cartItem => { // cartItem c'est quoi ici? nom d'une fonction? ************* ??
+    panier.forEach(cartItem => {
         const teddy = teddies.find(teddy => teddy._id === cartItem.id)
 
         // console.table(teddy)
@@ -86,10 +98,8 @@ function addTeddyToDom(teddy, quantite) {
 
 
 
-    article.querySelector(".modifierquantite").innerHTML = `
-                                                             <form class="selectqtymain" name="selectqtymain" autocomplete="on">                    
-                                                             <label for="qtyitem"></label>
-                                                             <select name="choixcouleur" id="qtyitem" class="qtyitem" required>
+    article.querySelector(".modifierquantite").innerHTML = `                                                           
+                                                             <select class="qtyitem" required>
                                                                  <option value="">${quantite}</option>
                                                                  <option value="1">1</option>
                                                                  <option value="2">2</option>
@@ -101,9 +111,8 @@ function addTeddyToDom(teddy, quantite) {
                                                                  <option value="8">8</option>
                                                                  <option value="9">9</option>
                                                                  <option value="10">10</option>
-                                                             </select>
-                                                             <input type="submit" href="" class="modifierquantite__btn" value="✔">
-                                                         </form>`
+                                                             </select>                                                             
+                                                        `
     articles.appendChild(article)
 
 
@@ -126,40 +135,34 @@ function addTeddyToDom(teddy, quantite) {
     // Modifier la quantité d'un article depuis le panier
     let qtySelectionne = article.querySelector(".qtyitem")
     qtySelectionne.addEventListener('change', function () {
-        // article.querySelector(".tqty").innerText = qtySelectionne.value
-        
-        const indexQty = panier.findIndex(cartItem => cartItem.id === teddy._id)
-       
-            // quantité de l'item dans le panier actuel
-            let valeurQtyPanier = panier[indexQty].quantity            
 
 
-        //    valeurQtyPanier = qtySelectionne.value // oK , ca change la quantite dans la console et ensuite ?
+        const item = panier.find(cartItem => cartItem.id === teddy._id)
 
-            
-            // panier.splice(valeurQtyPanier, 1, qtySelectionne)
-            // panier.splice(panier.findIndex(({Qtysearch}) => Qtysearch == panier.quantity), 1, qtySelectionne);
+        // quantité de l'item dans le panier actuel
+        // let valeurQtyPanier = panier[indexQty].quantity            
 
-            console.log(panier) // n'affiche rien
-            localStorage.setItem("panier", JSON.stringify(panier))
-            
-        console.log("qty dans panier : " + valeurQtyPanier)       
-        console.log("index du panier n : " + indexQty)
-        
-         
+
+        item.quantity = parseInt(qtySelectionne.value)  // Ajout de parseInt pour eviter que la Qty se transforme en string de la localstorage
+
+        console.log(item.quantity)
+        console.log(typeof qtySelectionne.value)
+
+        // panier.splice(valeurQtyPanier, 1, qtySelectionne)
+        // panier.splice(panier.findIndex(({Qtysearch}) => Qtysearch == panier.quantity), 1, qtySelectionne);
+
+        console.log(panier) // n'affiche rien
+        localStorage.setItem("panier", JSON.stringify(panier))
+        article.querySelector(".tqty").innerText = qtySelectionne.value
+        prixTotalCalculEnEuro()
+        const priceTotal = item.quantity * teddy.price // <=
+        const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
+
+
+        article.querySelector(".ttotal").innerText = priceTotalEuro
+
         // localStorage.setItem("panier", JSON.stringify(panier))
     })
-
-
-
-    // // Ecouter changement de quantité pour agir ensuite sur le panier
-    // article.querySelector(".tqty").addEventListener('change', event => {
-    //     window.alert('prixChange' + event)
-    //     console.log("changement")
-    //     //   const value = event.target.value
-    //     //   panier = 
-    // })
-
 
 
 }
@@ -168,10 +171,38 @@ function addTeddyToDom(teddy, quantite) {
 
 
 
+// *********** POST / ORDER *************
 
 
 
 
+let contact = {
+    firstName: "andy",
+    lastName: "lafond",
+    address: "65 impasse",
+    city: "nancy",
+    email: "ffzf@fezfe.fr"
+}
+
+const promise01 = fetch("http://localhost:3000/api/teddies/order", {
+    method: "POST",
+    body: JSON.stringify(contact),
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': "application/json"
+            }
+})
+
+promise01.then(async (response) => {
+    try {
+        console.log(response)
+        await response.json()
+    } catch (e) {
+        console.log(e)
+    }
+
+})
+// products: [string] <-- array of product _id
 
 
 

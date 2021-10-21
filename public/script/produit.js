@@ -6,6 +6,7 @@
 
 // ******************************
 //Obtention de l'ID de la page
+import { getTeddy, getPanier } from "./function.js"
 function getParameter(paramaterId) {
     let parameters = new URLSearchParams(window.location.search);
     return parameters.get(paramaterId);
@@ -16,11 +17,7 @@ console.log(window.location.search)
 let id = getParameter("id")
 console.log(id)
 
-//Variable http de l'API
-let teddiesApiUrl = "http://localhost:3000/api/teddies"
-console.table(teddiesApiUrl)
-//Variable egale à Concatenation Url + ID
-let teddyApiUrl = teddiesApiUrl.concat(`/` + id)
+
 
 
 
@@ -36,19 +33,7 @@ console.log(articles)
 
 
 //fonction 
-async function getTeddy(Url) {
-    try {
-        const res = await fetch(Url)
-        if (!res.ok) {
-            throw res
-        }
-        return await res.json();
-    }
-    catch (err) {
-        console.error(err)
-    }
 
-}
 
 
 // fonction modif DOM
@@ -77,6 +62,15 @@ function addTeddyToDom(teddy) {
 
     })
 
+    // Notif ajout panier
+function notifAjoutPanier() {
+    const qtyAjoute = document.getElementById("selectqtyid").value
+    let small = document.querySelector(".smallajout")
+    small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
+    small.classList.add()
+}
+
+
     // ****** Liste déroulante choix couleurs ***********
     // Selection du Parent de la liste de choix couleur
     const parent = document.querySelector(".formulaire")
@@ -99,19 +93,11 @@ function addTeddyToDom(teddy) {
 
 
 
-// Notif ajout panier
-function notifAjoutPanier() {
-    const qtyAjoute = document.getElementById("selectqtyid").value
-    let small = document.querySelector(".smallajout")
-    small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
-    small.classList.add()
-}
-
 
 //
 async function refresh() {
     articles.innerHTML = ""
-    const teddy = await getTeddy(teddyApiUrl)
+    const teddy = await getTeddy(id)
     addTeddyToDom(teddy)
 
 }
@@ -130,7 +116,7 @@ function addTeddyToCart(teddy) {
 
 
     //variable panier = la chaine de caractere de ( la valeur associé à la clé ) reconstruite en valeur JS OU= array vide
-    const panier = JSON.parse(localStorage.getItem("panier")) || []
+    const panier = getPanier()
     console.log(panier) // marche pas, normal ?
 
     //variable teddyCart = chercher dans le panier si il exite un Id stocké dans teddyCart correpondant à un ID de l'objet teddy
