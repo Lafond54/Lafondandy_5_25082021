@@ -18,8 +18,8 @@ async function getTeddies() {
 
 // Afficher panier vide (et cacher les elements inutiles si panier est vide)
 
-if (panier === null) {
-    console.log(`salut: ` + panier)
+if (panier.length === 0) {
+    console.log(`panier vide: ` + panier)
     document.querySelector(".clearpanier").style.display = 'none'
     document.querySelector(".tableaupanier").style.display = 'none'
     document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html">cette page</a>.`
@@ -168,110 +168,77 @@ function addTeddyToDom(teddy, quantite) {
 }
 
 
-
-
-
 // *********** POST / ORDER *************
 
+// Declaration variable formulaire
 
+const formFirstName = document.getElementById("firstname")
+const formLastName = document.getElementById("lastname")
+const formAdress = document.getElementById("adress")
+const formCity = document.getElementById("city")
+const formEmail = document.getElementById("email")
 
+// Creation tableau "products" de string d'IDs
 
-let contact = {
-    firstName: "andy",
-    lastName: "lafond",
-    address: "65 impasse",
-    city: "nancy",
-    email: "ffzf@fezfe.fr"
+let products = []
+for (let i = 0; i < panier.length; i++) {
+
+    products.push(panier[i].id)
 }
+console.log(products)
 
-const promise01 = fetch("http://localhost:3000/api/teddies/order", {
-    method: "POST",
-    body: JSON.stringify(contact),
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': "application/json"
-            }
-})
 
-promise01.then(async (response) => {
-    try {
-        console.log(response)
-        await response.json()
-    } catch (e) {
-        console.log(e)
+// Submit lance l'envoie de l'objet Contact + tableau de string ID
+
+document.getElementById("submitpanier").addEventListener('click', (e) => {
+    
+
+
+    let contact = {
+        firstName: formFirstName.value,
+        lastName: formLastName.value,
+        address: formAdress.value,
+        city: formCity.value,
+        email: formEmail.value
+    }
+
+    
+    let promise01 = fetch("http://localhost:3000/api/teddies/order", {
+        method: "POST",
+        body: JSON.stringify({ contact, products }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': "application/json"
+        }
+    })
+
+    promise01.then(async (response) => {
+        try {
+            console.log(response)
+            const contenu = await response.json()
+            console.table(contenu)
+            localStorage.setItem("resOrderId", JSON.stringify(contenu))
+        } catch (e) {
+            console.log(e)
+        }
+    })
+
+    let verifLs = localStorage.resOrderId
+    console.log( "LS etat : " + verifLs)
+    console.log(localStorage)
+
+    let LS = localStorage.getItem("resOrderId")
+    console.log(LS)
+    if (localStorage.getItem("resOrderId") === null) {
+        console.log( "LocalSotrage pas encore rempli")
+    }
+    else {
+        //  document.location.href = "confirmation.html"
     }
 
 })
-// products: [string] <-- array of product _id
 
 
-
-
-
-
-
-// for (let p = 0; p < panier.length; p++) {
-//     console.log(panier[p].id)
-// }
-// console.log()
-
-
-
-//  Modif DOm ***************
-
-
-
-
-// //Variable http de l'API
-// let teddiesApiUrl = "http://localhost:3000/api/teddies"
-
-// //Variable egale à Concatenation Url + ID
-// let teddyApiUrl = teddiesApiUrl.concat(`/` + id)
-
-// Boucle sur le tableau d'ojets du LS pour obtenir la liste des IDs dans le chariot
-// for (i = 0; i < panier.length; i++) {
-//     let chariot = panier[i]
-//     console.log(chariot)
-
-// }
-
-
-
-// //********affichage des produits du panier**********
-// const elementPanier = document.querySelector(".tableaupanier__body")
-// console.log(elementPanier)
-
-// //Si le panier est vide : afficher le panier vide
-
-// if (panier === null) {
-//     const panierVide = `<div class=container-panier-vide>Votre Panier est vide </div>`
-//     elementPanier.innerHTML = panierVide
-// }
-// else {
-//     //si le panier est pas vide
-//     structureProduitPanier = []
-
-//     for (i = 0; i < panier.length; i++) {
-//         console.log(`Nbre d'elements dans le local storage (pas la quantite) = ` + panier.length)
-
-//         structureProduitPanier = structureProduitPanier + `
-//         <tr>
-//         <td>${panier[i].id}</td>
-//         <td>${panier[i].quantity}</td>        
-//         <td>100€</td>
-//         <td>addition du total</td>
-//         </tr>
-//         `
-
-//     }
-//     if (i == panier.length) {
-//         //injection html dans page panier
-
-//         elementPanier.innerHTML = structureProduitPanier
-
-//     }
-
-// }
 
 
 
