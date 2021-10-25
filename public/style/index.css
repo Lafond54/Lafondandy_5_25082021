@@ -484,6 +484,16 @@ body {
 .confirm__votreordre {
   font-size: 1.2rem;
 }
+.confirm__orderid {
+  font-size: 1.5rem;
+  color: #554f4f;
+  margin-top: 2rem;
+  padding: 0.6rem;
+  border: 2px solid black;
+  border-radius: 12px;
+  align-items: center;
+  text-align: center;
+}
 
 .h3form {
   margin: 1rem;

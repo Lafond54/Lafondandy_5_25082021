@@ -16,4 +16,14 @@
     &__votreordre {
         font-size: 1.2rem;
     }
+    &__orderid {
+        font-size: 1.5rem;
+        color: rgb(85, 79, 79);
+        margin-top: 2rem;
+        padding: .6rem;
+        border : 2px solid black;
+        border-radius: 12px;
+        align-items: center;
+        text-align: center;
+    }
 }

@@ -44,7 +44,7 @@ function addTeddyToDom(teddy) {
     let price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     article.querySelector(".card__divimg__item").src = teddy.imageUrl
     article.querySelector(".card__d__name").innerText = teddy.name
-    article.querySelector(".card__d__price").innerText = price
+    article.querySelector(".card__d__price").innerText = `Prix : ${price}`
     article.querySelector(".card__d__descr").innerText = teddy.description
     // article.getElementById('color').value = teddy.colors        *** Marche pas *** boucle for of ou forEach document.createElement de type option (select?)
     articles.appendChild(article)
@@ -57,18 +57,27 @@ function addTeddyToDom(teddy) {
         addTeddyToCart(teddy)
         notifAjoutPanier()
         setTimeout(function () {
-            document.querySelector(".smallajout").innerHTML = '';
+             document.querySelector(".smallajout").remove();
         }, 4500)
 
     })
-
+  
     // Notif ajout panier
-function notifAjoutPanier() {
-    const qtyAjoute = document.getElementById("selectqtyid").value
-    let small = document.querySelector(".smallajout")
-    small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
-    small.classList.add()
-}
+    function notifAjoutPanier() {
+        let small = document.querySelector(".smallajout")
+        let divcontainer = document.querySelector(".container3")
+         const qtyAjoute = document.getElementById("selectqtyid").value        
+         small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
+        
+        let newDiv = document.createElement("div")
+        newDiv.classList.add('smallajout')
+      
+       
+        //  small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
+
+        divcontainer.appendChild(newDiv)
+
+    }
 
 
     // ****** Liste déroulante choix couleurs ***********

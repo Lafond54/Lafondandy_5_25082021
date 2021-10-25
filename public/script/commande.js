@@ -100,7 +100,7 @@ function addTeddyToDom(teddy, quantite) {
 
     article.querySelector(".modifierquantite").innerHTML = `                                                           
                                                              <select class="qtyitem" required>
-                                                                 <option value="">${quantite}</option>
+                                                                 <option value="" selected="true" disabled="disabled">${quantite}</option>
                                                                  <option value="1">1</option>
                                                                  <option value="2">2</option>
                                                                  <option value="3">3</option>
@@ -171,6 +171,7 @@ function addTeddyToDom(teddy, quantite) {
 // *********** POST / ORDER *************
 
 // Declaration variable formulaire
+let formMain = document.querySelector(".formmain")
 
 const formFirstName = document.getElementById("firstname")
 const formLastName = document.getElementById("lastname")
@@ -178,22 +179,29 @@ const formAdress = document.getElementById("adress")
 const formCity = document.getElementById("city")
 const formEmail = document.getElementById("email")
 
-// Creation tableau "products" de string d'IDs
-
-let products = []
-for (let i = 0; i < panier.length; i++) {
-
-    products.push(panier[i].id)
-}
-console.log(products)
+// if (formMain.addEventListener) {
+//     formMain.addEventListener("submit", callback, false)
+//     console.log("form submit")
+// }
+// document.querySelector("#myForm").addEventListener("submit", function(e){
+//     if(!isValid){
+//         e.preventDefault();    //stop form from submitting
+//     }
+// });
 
 
 // Submit lance l'envoie de l'objet Contact + tableau de string ID
 
 document.getElementById("submitpanier").addEventListener('click', (e) => {
-    
+    // Creation tableau "products" de string d'IDs
+    let products = []
+    for (let i = 0; i < panier.length; i++) {
 
+        products.push(panier[i].id)
+    }
+    console.log(products)
 
+    // Object contact
     let contact = {
         firstName: formFirstName.value,
         lastName: formLastName.value,
@@ -202,41 +210,43 @@ document.getElementById("submitpanier").addEventListener('click', (e) => {
         email: formEmail.value
     }
 
-    
-    let promise01 = fetch("http://localhost:3000/api/teddies/order", {
-        method: "POST",
-        body: JSON.stringify({ contact, products }),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': "application/json"
+  
+
+        if (products.length === 0) {  // Rajouter une condition de validation de formulaire pour lancer le POST
+            e.preventDefault()
         }
+        else {
+
+            let promise01 = fetch("http://localhost:3000/api/teddies/order", {
+                method: "POST",
+                body: JSON.stringify({ contact, products }),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': "application/json"
+                }
+            })
+
+            promise01.then(async (response) => {
+                try {
+                    console.log(response)
+                    const contenu = await response.json()
+                    console.table(contenu)
+                    localStorage.setItem("resOrderId", JSON.stringify(contenu))
+                } catch (e) {
+                    console.log(e)
+                }
+            })
+
+            let verifLs = localStorage.resOrderId
+            console.log("LS etat : " + verifLs)
+            console.log(localStorage)
+
+            let LS = localStorage.getItem("resOrderId")
+            console.log(LS)
+        }
+
     })
 
-    promise01.then(async (response) => {
-        try {
-            console.log(response)
-            const contenu = await response.json()
-            console.table(contenu)
-            localStorage.setItem("resOrderId", JSON.stringify(contenu))
-        } catch (e) {
-            console.log(e)
-        }
-    })
-
-    let verifLs = localStorage.resOrderId
-    console.log( "LS etat : " + verifLs)
-    console.log(localStorage)
-
-    let LS = localStorage.getItem("resOrderId")
-    console.log(LS)
-    if (localStorage.getItem("resOrderId") === null) {
-        console.log( "LocalSotrage pas encore rempli")
-    }
-    else {
-        //  document.location.href = "confirmation.html"
-    }
-
-})
 
 
 
@@ -247,11 +257,9 @@ document.getElementById("submitpanier").addEventListener('click', (e) => {
 
 
 
+// RegExp Email du formulaire ********************
 
-// Formulaire ********************
-
-let form = document.querySelector('#purchaseform')
-
+let form = document.getElementById('purchaseform')
 
 //ecouter la modification de l'email
 

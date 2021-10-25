@@ -27,7 +27,7 @@
     <!-- Favicon -->
 
 
-    <script type="module" src="script/commande.js" defer></script>
+    <script type="module" src="script/commande.js"></script>
 
 </head>
 
@@ -80,7 +80,7 @@
             <div class="container3">
 
                 <h2 class="h3form">Vos coordonnées pour Passer commande</h2> <!-- Formulaire -->
-                <form class="formmain" action="" method="POST" id="purchaseform">
+                <form class="formmain" method="" id="purchaseform">
                     <div class="">
                         <label for="firstname" class="label">Prénom :</label>
                         <input type="text" name="firstname" id="firstname" class="input" required
@@ -109,7 +109,8 @@
                         <input type="text" name="city" id="city" class="input" required
                             pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" />
                     </div>
-                    <input type="submit" id="submitpanier" class="btnpurchase" value="Passer ma commande">
+                    <input type="submit" formaction="confirmation.html" id="submitpanier" class="btnpurchase"
+                        value="Passer ma commande">
                 </form>
 
             </div>
