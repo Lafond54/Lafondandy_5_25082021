@@ -1,7 +1,7 @@
 body {
     font-family: "Roboto", sans-serif;
     margin: 0;
-    background: rgb(0, 0, 0);
+    background: rgb(255, 255, 255);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -126,11 +126,14 @@ body {
         margin: 0 1rem 2rem 1rem ;
     }
 }
+
+
 .container3 {
     background: $gris-fond;
     max-width: 1400px;
     border: dashed 2px #55371169;
     border-radius: 10px;
+    width: 100%;
     
 }
 

@@ -23,6 +23,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Favicon -->
 
@@ -51,36 +52,37 @@
 
         </div>
         <div class="espaceblanc"></div>
-        <section class="container2">
-            <div class="container3">
-                <div>
-                    <h2 class="h3form">Votre panier</h2> <!-- Tableau résumé du panier -->
-                    <div class="paniervide"></div>
+        <div class="gigacontainer">
+            <section class="container5">
+                <div class="container3">
+                    <div>
+                        <h2 class="h3form">Votre panier</h2> <!-- Tableau résumé du panier -->
+                        <div class="paniervide"></div>
 
 
 
-                    <table class="tableaupanier">
-                        <tr class="tableaupanier__head">
-                            <th>Produit</th>
-                            <th>Qté</th>
-                            <th>Prix</th>
-                            <th>Modifier Qté</th>
-                            <th> - </th>
-                            <th>Total</th>
-                        </tr>
-                    </table>
+                        <table class="tableaupanier">
+                            <tr class="tableaupanier__head">
+                                <th>Produit</th>
+                                <th>Qté</th>
+                                <th>Prix</th>
+                                <th>Modifier Qté</th>
+                                <th> - </th>
+                                <th>Total</th>
+                            </tr>
+                        </table>
 
 
-                    <button class="clearpanier">Vider le panier</button>
-                    <div class="totalfinal"></div>
+                        <button class="clearpanier">Vider le panier</button>
+                        <div class="totalfinal"></div>
+                    </div>
                 </div>
-            </div>
-        </section>
-        <section class="container2">
-            <div class="container3">
+            </section>
 
-                <h2 class="h3form">Vos coordonnées pour Passer commande</h2> <!-- Formulaire -->
-                <form class="formmain" method="" id="purchaseform">
+            <div class="container4">
+
+
+                <!-- <form class="formmain" id="purchaseform">
                     <div class="">
                         <label for="firstname" class="label">Prénom :</label>
                         <input type="text" name="firstname" id="firstname" class="input" required
@@ -111,10 +113,80 @@
                     </div>
                     <input type="submit" formaction="confirmation.html" id="submitpanier" class="btnpurchase"
                         value="Passer ma commande">
-                </form>
+                </form> -->
+                <div class="containerform">
+
+                    <div class="card-form">
+                        <div class="card-image">
+                            <h2 class="card-heading">
+                                Passer commande
+                                <small>Renseignez vos <br>coordonnées</small>
+                            </h2>
+                        </div>
+
+                        <form class="formmain" id="purchaseform">
+                            <div class="input">
+
+                                <input type="text" name="firstname" id="firstname" class="input-field" required
+                                    pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$">
+                                <label for="firstname" class="input-label">Prénom :</label>
+                            </div>
+                            <div class="input">
+
+                                <input type="text" name="lastname" id="lastname" class="input-field" required
+                                    pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" />
+                                <label for="lastname" class="input-label">Nom :</label>
+                            </div>
+                            <div class="input">
+
+                                <input type="text" name="email" id="email" class="input-field" required />
+                                <label for="email" class="input-label">Adresse e-mail :</label>
+                                <small class="small"></small>
+                            </div>
+                            <div class="input">
+                                <textarea name="adress" id="adress" class="input-field" required></textarea>
+                                <label for="adress" class="input-label">Adresse :</label>
+                            </div>
+                            <div class="input">
+                                <input type="number" name="zipcode" id="zipcode" class="input-field" required min="0"
+                                    max="100000" />
+                                <label for="zipcode" class="input-label">Code postal :</label>
+                            </div>
+                            <div class="input">
+                                <input type="text" name="city" id="city" class="input-field" required
+                                    pattern="^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$" />
+                                <label for="city" class="input-label">Ville :</label>
+                            </div>
+                            <input type="submit" formaction="confirmation.html" id="submitpanier" class="action-button"
+                                value="Passer ma commande">
+                        </form>
+
+
+
+                        <!-- <form class="card-form">
+                            <div class="input">
+                                <input type="text" class="input-field" value="Alexander Parkinson" required/>
+                                <label class="input-label">Full name</label>
+                            </div>
+                                        <div class="input">
+                                <input type="text" class="input-field" value="vlockn@gmail.com" required/>
+                                <label class="input-label">Email</label>
+                            </div>
+                                        <div class="input">
+                                <input type="password" class="input-field" required/>
+                                <label class="input-label">Password</label>
+                            </div>
+                            <div class="action">
+                                <button class="action-button">Get started</button>
+                            </div>
+                        </form> -->
+
+                    </div>
+                </div>
+
 
             </div>
-        </section>
+        </div>
     </div>
     <footer class="footer">
         <h4 class="footer__logo">Orinoco</h4>

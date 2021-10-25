@@ -1,35 +1,194 @@
-//Formulaire
 .h3form {
     margin: 1rem;
 }
 
 //Formulaire ******
-.formmain {
-    margin: 1rem;
+// .formmain {
+//     margin: 1rem;
+//     display: flex;
+//     flex-wrap: wrap;
+//     flex-direction: column;
+// }
+
+// label {
+//     display: block;
+//     width: 150px;
+//     float: left;
+// }
+
+// //*********
+// .btnpurchase {
+//     display: block;
+//     margin: auto;
+//     width: 242px;
+//     @include btnrose;
+//     margin-bottom: 1rem;
+//     margin-top: 1rem;
+//     border-style: none;
+// }
+
+.gigacontainer {
+    max-width: 1400px;
+    margin: auto;
+    padding: 1rem;
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    &__zipcode{
-        
+    @media (min-width: 1300px) {
+        flex-direction: row;
+    }
+    @media (max-width : 430px)
+    {
+        padding: 0;
     }
 }
 
-label {
-    display: block;
-    width: 150px;
-    float: left;
+.container5 {
+    @media (min-width: 1300px) {
+        display: flex;
+        flex-grow: 3;
+    }
+    @media (max-width : 430px)
+    {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    background: white;
+    padding: 5px;
+    background: $gris-fond;
+
+    margin: 0 1rem 0 1rem;
+
+    border-radius: 10px;
+    margin-bottom: 2rem;
+
 }
 
-//*********
-.btnpurchase {
-    display: block;
-    margin: auto;
-    width: 242px;
-    @include btnrose;
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    border-style: none;
+.container4 {
+    background: white;
+    margin: 0 1rem 0 1rem;
+    padding: 5px;
+    background: $gris-fond;
+    flex-grow: 2;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    @media (max-width : 430px)
+    {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
 }
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+.card-form {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 425px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
+    padding: 0.75rem;
+    background: $gris-fond;
+    border: dashed 2px #55371169;
+    border-radius: 10px;
+}
+
+.card-image {
+    border-radius: 8px;
+    overflow: hidden;
+    padding-bottom: 65%;
+    background-image: url("/public/images/nournours/form_img.jpeg");
+    background-repeat: no-repeat;
+    background-size: 165%;
+    background-position: 0 5%;
+    position: relative;
+}
+
+.card-heading {
+    position: absolute;
+    left: 10%;
+    top: 15%;
+    right: 10%;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #85236f;
+    line-height: 1.222;
+    small {
+        display: block;
+        font-size: 0.75em;
+        font-weight: 400;
+        margin-top: 0.25em;
+    }
+}
+
+.formmain {
+    padding: 2rem 1rem 0;
+}
+
+.input {
+    display: flex;
+    flex-direction: column-reverse;
+    position: relative;
+    padding-top: 1.5rem;
+    & + .input {
+        margin-top: 1.5rem;
+    }
+}
+
+.input-label {
+    color: #32383b;
+    position: absolute;
+    top: 0.5rem;
+    transition: 0.25s ease;
+}
+
+.input-field {
+    border: 0;
+    z-index: 1;
+    background-color: transparent;
+    border-bottom: 2px solid rgb(107, 107, 107);
+    font: inherit;
+    font-size: 1.125rem;
+    padding: 0.25rem 0;
+    &:focus,
+    &:valid {
+        outline: 0;
+        border-bottom-color: $primaire;
+        & + .input-label {
+            color: $primaire;
+            transform: translateY(-0.5rem);
+        }
+    }
+}
+
+.action {
+    margin-top: 2rem;
+}
+
+.action-button {
+    @include btnrose;
+    cursor: pointer;
+    font: inherit;
+    font-size: 1.25rem;
+    padding: 1em;
+    margin: 1.2rem 0 0.3rem 0;
+    width: 100%;
+    font-weight: 500;
+    background: linear-gradient(170deg, ($secondaire), ($primaire));
+    border-radius: 6px;
+    color: #fff;
+    border: 0;
+}
+
+#adress {
+    resize: none;
+}
+
 
 //balise small (validation des donnees)
 
@@ -52,10 +211,9 @@ small {
 }
 
 .tableaupanier {
+    font-size: 1rem;
     border-collapse: collapse;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
-   
-    background-color: rgba(61, 61, 61, 0.041);
     min-width: 300px;
     margin: 10px auto;
     &__head {
@@ -64,62 +222,72 @@ small {
     }
     &__body {
         background-color: rgba(61, 61, 61, 0.041);
-
     }
-    &__body tr:last-of-type {
-        border-bottom: 5px solid #383838;
-      
-    }
-    
 }
 
 td, th /* Toutes les cellules des tableaux... */ {
-    border: 1px solid black;
-    padding: 10px;
+    padding: 3px;
     text-align: center;
     vertical-align: middle;
+    @media (min-width: 850px) {
+        padding: 10px 30px 10px 30px;
+        font-size: 1.2rem;
+    }
+    @media (min-width: 580px) and (max-width: 849px) {
+        padding: 15px;
+        font-size: 1rem;
+    }
+}
+.qtyitem {
+    font-size: 1rem;
 }
 
 //Btn vider panier
 .clearpanier {
     padding: 0.5rem 1rem 00.5rem 1rem;
-    background: rgba(61, 61, 61, 0.041);
     display: block;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.466);
     margin: 2px auto;
-    font-size: 1rem;
-
-    
-    &:hover {
-        background: linear-gradient(170deg, ($secondaire), ($primaire));
-    }
+    cursor: pointer;
+    @include btnrose;
+    border: 0px;
 }
 
 .totalfinal {
-    font-size: 1.2rem;
+    display: flex;
+   justify-content: center;
+    
+    padding-top: 2rem;
+    font-size: 1.5rem;
     margin: 1rem;
 }
 
-.paniervide{
+.paniervide {
     font-size: 1.4rem;
     padding: 1rem;
 }
 
-.lienretour {    
+.lienretour {
     font-style: oblique;
 }
 
-
 // Selection quantité
 .modifierquantite {
-&__btn { color: rgb(255, 255, 255);
-    padding: 0px 7px 0 7px;
-    background: linear-gradient(170deg, ($secondaire), ($primaire))
-    
-}
- }
-
- // pointeur sur poubelle
- .far.fa-trash-alt {
-     cursor: pointer;
+    &__btn {
+        color: rgb(255, 255, 255);
+        padding: 0px 7px 0 7px;
+        background: linear-gradient(170deg, ($secondaire), ($primaire));
     }
+}
+
+// pointeur sur poubelle
+.far.fa-trash-alt {
+    @include btnrose($bradius: 5px);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.5rem 0.9rem;
+    &:hover {
+        content: 'hello';
+        color: rgb(241, 56, 56);
+        transition-duration: 0.4s;
+    }
+}
