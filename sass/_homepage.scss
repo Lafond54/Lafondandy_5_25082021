@@ -123,10 +123,9 @@ body {
     border-radius: 10px;
     margin-bottom: 2rem;
     @media (max-width: 1400px) {
-        margin: 0 1rem 2rem 1rem ;
+        margin: 0 1rem 2rem 1rem;
     }
 }
-
 
 .container3 {
     background: $gris-fond;
@@ -134,7 +133,6 @@ body {
     border: dashed 2px #55371169;
     border-radius: 10px;
     width: 100%;
-    
 }
 
 .articles {
@@ -211,5 +209,4 @@ body {
 .footer {
     @include pied;
     flex-shrink: 0;
-    
 }

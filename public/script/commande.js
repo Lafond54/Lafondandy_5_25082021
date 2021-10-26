@@ -179,20 +179,13 @@ const formAdress = document.getElementById("adress")
 const formCity = document.getElementById("city")
 const formEmail = document.getElementById("email")
 
-// if (formMain.addEventListener) {
-//     formMain.addEventListener("submit", callback, false)
-//     console.log("form submit")
-// }
-// document.querySelector("#myForm").addEventListener("submit", function(e){
-//     if(!isValid){
-//         e.preventDefault();    //stop form from submitting
-//     }
-// });
 
 
 // Submit lance l'envoie de l'objet Contact + tableau de string ID
 
 document.getElementById("submitpanier").addEventListener('click', (e) => {
+
+
     // Creation tableau "products" de string d'IDs
     let products = []
     for (let i = 0; i < panier.length; i++) {
@@ -210,42 +203,42 @@ document.getElementById("submitpanier").addEventListener('click', (e) => {
         email: formEmail.value
     }
 
-  
 
-        if (products.length === 0) {  // Rajouter une condition de validation de formulaire pour lancer le POST
-            e.preventDefault()
-        }
-        else {
 
-            let promise01 = fetch("http://localhost:3000/api/teddies/order", {
-                method: "POST",
-                body: JSON.stringify({ contact, products }),
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': "application/json"
-                }
-            })
+    if (products.length === 0) {  // Rajouter une condition de validation de formulaire pour lancer le POST
+        e.preventDefault()
+    }
+    else {
 
-            promise01.then(async (response) => {
-                try {
-                    console.log(response)
-                    const contenu = await response.json()
-                    console.table(contenu)
-                    localStorage.setItem("resOrderId", JSON.stringify(contenu))
-                } catch (e) {
-                    console.log(e)
-                }
-            })
+        let promise01 = fetch("http://localhost:3000/api/teddies/order", {
+            method: "POST",
+            body: JSON.stringify({ contact, products }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': "application/json"
+            }
+        })
 
-            let verifLs = localStorage.resOrderId
-            console.log("LS etat : " + verifLs)
-            console.log(localStorage)
+        promise01.then(async (response) => {
+            try {
+                console.log(response)
+                const contenu = await response.json()
+                console.table(contenu)
+                localStorage.setItem("resOrderId", JSON.stringify(contenu))
+            } catch (e) {
+                console.log(e)
+            }
+        })
 
-            let LS = localStorage.getItem("resOrderId")
-            console.log(LS)
-        }
+        let verifLs = localStorage.resOrderId
+        console.log("LS etat : " + verifLs)
+        console.log(localStorage)
 
-    })
+        let LS = localStorage.getItem("resOrderId")
+        console.log(LS)
+    }
+
+})
 
 
 
@@ -279,12 +272,8 @@ const validEmail = function (inputEmail) {
     // Message dans la balise small selon le resultat booleen precedent (ligne62)
     if (testEmail == true) {
         small.innerHTML = "✔ Adresse Valide"
-        small.classList.remove('__notok')    // Enlever couleur precedente
-        small.classList.add('__ok')          // couleur message de validation
     } else {
         small.innerHTML = "✗ Adresse Non Valide"
-        small.classList.remove('__ok')
-        small.classList.add('__notok')
     }
 }
 

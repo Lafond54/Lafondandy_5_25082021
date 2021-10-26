@@ -36,8 +36,7 @@
     @media (min-width: 1300px) {
         flex-direction: row;
     }
-    @media (max-width : 430px)
-    {
+    @media (max-width: 430px) {
         padding: 0;
     }
 }
@@ -45,10 +44,9 @@
 .container5 {
     @media (min-width: 1300px) {
         display: flex;
-        flex-grow: 3;
+        flex-grow: 9;
     }
-    @media (max-width : 430px)
-    {
+    @media (max-width: 430px) {
         margin-left: 0;
         margin-right: 0;
     }
@@ -60,7 +58,6 @@
 
     border-radius: 10px;
     margin-bottom: 2rem;
-
 }
 
 .container4 {
@@ -68,15 +65,13 @@
     margin: 0 1rem 0 1rem;
     padding: 5px;
     background: $gris-fond;
-    flex-grow: 2;
+    flex-grow: 4;
     border-radius: 10px;
     margin-bottom: 2rem;
-    @media (max-width : 430px)
-    {
+    @media (max-width: 430px) {
         margin-left: 0;
         margin-right: 0;
     }
-
 }
 
 img {
@@ -93,7 +88,7 @@ img {
     border-radius: 10px;
     box-shadow: 0 10px 20px 0 rgba(#999, 0.25);
     padding: 0.75rem;
-    background: $gris-fond;
+    background: $gris-clair;
     border: dashed 2px #55371169;
     border-radius: 10px;
 }
@@ -179,30 +174,19 @@ img {
     margin: 1.2rem 0 0.3rem 0;
     width: 100%;
     font-weight: 500;
-    background: linear-gradient(170deg, ($secondaire), ($primaire));
+    background: #85236f;
     border-radius: 6px;
     color: #fff;
     border: 0;
+    &:hover {
+        transition: 1s;
+        background: #ad4597;
+        transform: scale(1.02);
+    }
 }
 
 #adress {
     resize: none;
-}
-
-
-//balise small (validation des donnees)
-
-small {
-}
-.small.__ok {
-    transition: 1s;
-    background-color: rgba(255, 255, 255, 0.301);
-    color: rgb(71, 133, 9);
-}
-.small.__notok {
-    transition: 1s;
-    background-color: rgba(255, 255, 255, 0.301);
-    color: rgb(207, 0, 41);
 }
 
 .container-panier-vide {
@@ -223,6 +207,10 @@ small {
     &__body {
         background-color: rgba(61, 61, 61, 0.041);
     }
+}
+
+td {
+    background: $gris-clair;
 }
 
 td, th /* Toutes les cellules des tableaux... */ {
@@ -254,8 +242,8 @@ td, th /* Toutes les cellules des tableaux... */ {
 
 .totalfinal {
     display: flex;
-   justify-content: center;
-    
+    justify-content: center;
+
     padding-top: 2rem;
     font-size: 1.5rem;
     margin: 1rem;
@@ -286,7 +274,7 @@ td, th /* Toutes les cellules des tableaux... */ {
     cursor: pointer;
     padding: 0.5rem 0.9rem;
     &:hover {
-        content: 'hello';
+        content: "hello";
         color: rgb(241, 56, 56);
         transition-duration: 0.4s;
     }
