@@ -58,7 +58,7 @@
     }
 }
 .flexgrow {
-    flex-grow: 1; //marche pas
+    flex-grow: 1; 
 }
 
 .selectcolor {
@@ -74,28 +74,5 @@
     margin: 15px auto;
     text-align: center;
     opacity: 1;
-    animation: smallajoutanim 5s ease-in;
-    @keyframes smallajoutanim {
-        0% {
-            opacity: 1;
-        }
-        90% {
-            opacity: 0.9;
-        }
-        92% {
-            opacity: 0.1;
-        }
-        94% {
-            opacity: 0.9;
-        }
-        96% {
-            opacity: 0.1;
-        }
-        98% {
-            opacity: 0.9;
-        }
-        100% {
-            opacity: 1;
-        }
-    }
+    border-radius: 6px;    
 }

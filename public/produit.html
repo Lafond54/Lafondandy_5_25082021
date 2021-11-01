@@ -12,6 +12,7 @@
 
     <link rel="stylesheet" href="style/index.css" />
     <title>Acceuil - Oniroco</title>
+
     <!-- Eviter bug zoom en reduisant la largeur de fenêtre -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -24,8 +25,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto&display=swap" rel="stylesheet">
 
-    <!-- Favicon -->
-
+    <!-- JS -->
     <script type="module" src="script/produit.js"></script>
 
 
@@ -50,16 +50,18 @@
             </span>
 
         </div>
+
         <div class="espaceblanc"></div>
-        <section class="container2">
+        <div class="container2">
             <div class="container3">
                 <div class="articleproduit">
                 </div>
                 <a class="card__d__add" href="">Ajouter au panier</a>
-
             </div>
-        </section>
+        </div>
+
     </div>
+
     <footer class="footer">
         <h4 class="footer__logo">Orinoco</h4>
         <ol class="footer__liste">
@@ -76,8 +78,8 @@
                 <a href="mailto:contact@orinoco.com" class="footer__txt">Contact</a>
             </li>
         </ol>
-
     </footer>
+
     <template class="card">
         <div class="card__divimg"><img class="card__divimg__item" src="images/nournours/teddy_1.jpg"
                 alt="noursnours marron tout mignon"></div>
@@ -94,6 +96,7 @@
 
             <div class="flexgrow"></div>
             <div class="card__d__price">Prix : 29,00€ (PRICE)</div>
+
             <div class="selectcolor">
                 <form class="formulaire" name="formulaire" autocomplete="on">
                     <label for="color">Choisir la couleur:</label>
@@ -101,11 +104,12 @@
                         <option value=""> -- Choissisez une couleur -- </option>
                     </select>
                 </form>
-
             </div>
+
             <div class="selectqty"><label for="selectqtyid">Choisir la quantité : </label>
                 <input class="selectqtyid" type="number" id="selectqtyid" value="1" name="selectqtyid" min="1" max="10">
             </div>
+
         </div>
 
     </template>
