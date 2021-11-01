@@ -130,9 +130,7 @@ img {
     flex-direction: column-reverse;
     position: relative;
     padding-top: 1.5rem;
-    & + .input {
-        margin-top: 1.5rem;
-    }
+    margin-top: 1.5rem;
 }
 
 .input-label {

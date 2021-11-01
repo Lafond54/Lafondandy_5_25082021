@@ -6,7 +6,7 @@
 
 // ******************************
 //Obtention de l'ID de la page
-import { getTeddy, getPanier } from "./function.js"
+import { getTeddy, getPanier, createNotif } from "./function.js"
 function getParameter(paramaterId) {
     let parameters = new URLSearchParams(window.location.search);
     return parameters.get(paramaterId);
@@ -54,28 +54,33 @@ function addTeddyToDom(teddy) {
     // Ecoute du bouton enclenchant la fonction d'ajout d'un nonours dans le panier
     document.querySelector(".card__d__add").addEventListener('click', (e) => {
         e.preventDefault()
-        addTeddyToCart(teddy)
-        notifAjoutPanier()
-        setTimeout(function () {
-             document.querySelector(".smallajout").remove();
-        }, 4500)
-
+        const quantity = parseInt(document.getElementById("selectqtyid").value)
+        addTeddyToCart(teddy, quantity)
+        notifAjoutPanier(quantity)
     })
-  
-    // Notif ajout panier
-    function notifAjoutPanier() {
-        let small = document.querySelector(".smallajout")
-        let divcontainer = document.querySelector(".container3")
-         const qtyAjoute = document.getElementById("selectqtyid").value        
-         small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
-        
-        let newDiv = document.createElement("div")
-        newDiv.classList.add('smallajout')
-      
-       
-        //  small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
 
-        divcontainer.appendChild(newDiv)
+    // Notif ajout panier
+    function notifAjoutPanier(quantity) {
+
+
+        createNotif(`✔ Vous avez ajouté ${quantity} exemplaire(s) de cet article dans votre panier.`, document.querySelector(".container3"))
+        // let small = document.querySelector(".smallajout")
+        // let divcontainer = document.querySelector(".container3")
+       
+       
+
+        // let newDiv = document.createElement("div")
+        // newDiv.classList.add('smallajout')
+        // newDiv.innerHTML = `✔ Vous avez ajouté ${quantity} exemplaire(s) de cet article dans votre panier.`
+
+
+        // //  small.innerHTML = `✔ Vous avez ajouté ${qtyAjoute} exemplaire(s) de cet article dans votre panier.`
+
+        // divcontainer.appendChild(newDiv)
+        // setTimeout(function () {
+        //     newDiv.remove();
+        // }, 4500)
+
 
     }
 
@@ -120,7 +125,7 @@ refresh()
 
 //Fonction ajout nounours dans le panier
 
-function addTeddyToCart(teddy) {
+function addTeddyToCart(teddy, quantity) {
 
 
 
@@ -139,7 +144,7 @@ function addTeddyToCart(teddy) {
     }
 
     //si teddyCart est vrai, alors on injecte la quantité presente dans l'input selectQty
-    teddyCart.quantity += parseInt(document.getElementById("selectqtyid").value)
+    teddyCart.quantity += quantity
     //Duo clé valeur ajouté dans le localstorage en chaine de caractere
     localStorage.setItem("panier", JSON.stringify(panier))
 

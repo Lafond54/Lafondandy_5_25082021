@@ -447,6 +447,7 @@ body {
   padding: 1rem;
 }
 .confirm__felicitation {
+  font-size: 1.8rem;
   display: block;
   padding-bottom: 1rem;
 }
@@ -611,8 +612,6 @@ img {
   flex-direction: column-reverse;
   position: relative;
   padding-top: 1.5rem;
-}
-.input + .input {
   margin-top: 1.5rem;
 }
 

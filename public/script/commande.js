@@ -183,9 +183,10 @@ const formEmail = document.getElementById("email")
 
 // Submit lance l'envoie de l'objet Contact + tableau de string ID
 
-document.getElementById("submitpanier").addEventListener('click', (e) => {
 
+document.getElementById("purchaseform").addEventListener('submit', async (e) => {
 
+    e.preventDefault()
     // Creation tableau "products" de string d'IDs
     let products = []
     for (let i = 0; i < panier.length; i++) {
@@ -205,12 +206,11 @@ document.getElementById("submitpanier").addEventListener('click', (e) => {
 
 
 
-    if (products.length === 0) {  // Rajouter une condition de validation de formulaire pour lancer le POST
-        e.preventDefault()
-    }
-    else {
+    if (products.length > 0) {  // Rajouter une condition de validation de formulaire pour lancer le POST
+        // e.preventDefault()
 
-        let promise01 = fetch("http://localhost:3000/api/teddies/order", {
+
+        const response = await fetch("http://localhost:3000/api/teddies/order", {
             method: "POST",
             body: JSON.stringify({ contact, products }),
             headers: {
@@ -219,23 +219,26 @@ document.getElementById("submitpanier").addEventListener('click', (e) => {
             }
         })
 
-        promise01.then(async (response) => {
-            try {
-                console.log(response)
-                const contenu = await response.json()
-                console.table(contenu)
-                localStorage.setItem("resOrderId", JSON.stringify(contenu))
-            } catch (e) {
-                console.log(e)
-            }
-        })
 
-        let verifLs = localStorage.resOrderId
-        console.log("LS etat : " + verifLs)
-        console.log(localStorage)
+        try {
+            console.log(response)
+            const contenu = await response.json()
+            console.table(contenu)
+            localStorage.setItem("resOrderId", JSON.stringify(contenu))
+            let verifLs = localStorage.resOrderId
+            console.log("LS etat : " + verifLs)
+            console.log(localStorage)
 
-        let LS = localStorage.getItem("resOrderId")
-        console.log(LS)
+            let LS = localStorage.getItem("resOrderId")
+            console.log(LS)
+            window.location = "confirmation.html"
+        } catch (e) {
+            console.error(e)
+
+        }
+
+        
+
     }
 
 })
