@@ -13,6 +13,15 @@ async function getTeddies() {
     return getTeddies.teddies
 }
 
+    // Afficher panier vide (et cacher les elements inutiles si panier est vide)
+    
+    if (panier.length === 0) {
+        console.log(`panier vide: ` + panier)
+        document.querySelector(".clearpanier").style.display = 'none'
+        document.querySelector(".tableaupanier").style.display = 'none'
+        document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html"><b>cette page</b></a>.`
+    }
+
 
 // main ***********
 async function main() {
@@ -84,14 +93,6 @@ function addTeddyToDom(teddy, quantite) {
 
 
     // **** GESTION PANIER ****
-        // Afficher panier vide (et cacher les elements inutiles si panier est vide)
-    if (panier.length === 0) {
-        console.log(`panier vide: ` + panier)
-        document.querySelector(".clearpanier").style.display = 'none'
-        document.querySelector(".tableaupanier").style.display = 'none'
-        document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html">cette page</a>.`
-    }
-
     // Vider le panier
     document.querySelector(".clearpanier").addEventListener('click', () => {
 
@@ -112,10 +113,17 @@ function addTeddyToDom(teddy, quantite) {
         console.log(article)
         article.remove()
 
+        if (panier.length === 0 ) {
+            localStorage.removeItem("panier")
+            location.reload(true)
+
+        }
+
+
         // Reafficher a nouveau le Prix Final après suppression d'une ligne     
         document.querySelector(".totalfinal").innerText = ""
         prixTotalCalculEnEuro()
-        createNotif(`✔ Vous avez supprimé un article.`, document.querySelector(".notifmodifqty"))
+        createNotif(`✔ Vous avez supprimé un article.`, document.querySelector(".notifmodifpanier"))
     })
 
     // Modifier la quantité d'un article depuis le panier
@@ -128,10 +136,10 @@ function addTeddyToDom(teddy, quantite) {
         localStorage.setItem("panier", JSON.stringify(panier))
         article.querySelector(".tqty").innerText = qtySelectionne.value
         prixTotalCalculEnEuro()
-        const priceTotal = item.quantity * teddy.price 
+        const priceTotal = item.quantity * teddy.price
         const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
         article.querySelector(".ttotal").innerText = priceTotalEuro
-        createNotif(`✔ Vous avez modifié la quantité d'un article.`, document.querySelector(".notifmodifqty"))
+        createNotif(`✔ Vous avez modifié la quantité d'un article.`, document.querySelector(".notifmodifpanier"))
     })
 }
 
