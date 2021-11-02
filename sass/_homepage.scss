@@ -62,8 +62,9 @@ body {
 .headertxt {
     display: flex;
     justify-content: center;
-    background: linear-gradient($gris-fond, $gris-clair, white);
-    padding: 0rem 0.5rem 2rem 0.5rem;
+    background: $gris-fond;
+    padding: 0rem 0.5rem 1.5rem 0.5rem;
+    border-bottom: dashed 2px #55371169;
     .fas.fa-paw {
         font-size: 1.2rem;
         padding-right: 0.9rem;
@@ -73,6 +74,13 @@ body {
     &__txt {
         font-size: 1.2rem;
         font-weight: 500;
+    }
+    &__space {
+        display: flex;
+        background: $gris-fond;
+        height: 5px;
+        border-radius: 0 0 5px 5px;
+
     }
 }
 // subheader
@@ -209,4 +217,5 @@ body {
 .footer {
     @include pied;
     flex-shrink: 0;
+    margin-top: 2.5rem;
 }

@@ -1,9 +1,10 @@
-import { getTeddy, getPanier } from "./function.js"
+import { getTeddy, getPanier, createNotif } from "./function.js"
 
 // Contenu panier sous forme d'array accessible depuis la page panier
 const panier = getPanier()
 console.log(panier)
 
+// 
 async function getTeddies() {
     if (!getTeddies.teddies) {
         const teddiesPromises = panier.map(item => getTeddy(item.id))
@@ -12,22 +13,6 @@ async function getTeddies() {
     return getTeddies.teddies
 }
 
-// Afficher panier vide (et cacher les elements inutiles si panier est vide)
-
-if (panier.length === 0) {
-    console.log(`panier vide: ` + panier)
-    document.querySelector(".clearpanier").style.display = 'none'
-    document.querySelector(".tableaupanier").style.display = 'none'
-    document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html">cette page</a>.`
-}
-
-// Vider le panier
-document.querySelector(".clearpanier").addEventListener('click', () => {
-
-    localStorage.removeItem("panier")
-    location.reload(true)
-
-})
 
 // main ***********
 async function main() {
@@ -54,7 +39,7 @@ async function prixTotalCalculEnEuro() {
         prixTotalCalcul += cartItem.quantity * teddy.price
     })
 
-    //Affichage du prix total mettre en fonction a part
+    //Affichage du prix total
     const prixTotalCalculEnEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prixTotalCalcul / 100)
     document.querySelector(".totalfinal").innerText = `Le montant total de votre panier est de : ` + prixTotalCalculEnEuro
 }
@@ -96,7 +81,27 @@ function addTeddyToDom(teddy, quantite) {
                                                         `
     articles.appendChild(article)
 
-    // Supprimer une ligne du panier
+
+
+    // **** GESTION PANIER ****
+        // Afficher panier vide (et cacher les elements inutiles si panier est vide)
+    if (panier.length === 0) {
+        console.log(`panier vide: ` + panier)
+        document.querySelector(".clearpanier").style.display = 'none'
+        document.querySelector(".tableaupanier").style.display = 'none'
+        document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html">cette page</a>.`
+    }
+
+    // Vider le panier
+    document.querySelector(".clearpanier").addEventListener('click', () => {
+
+        localStorage.removeItem("panier")
+        location.reload(true)
+
+    })
+
+
+    // Supprimer une ligne du panier avec trash
     article.querySelector(".deleteitem").addEventListener('click', (e) => {
         console.log(panier)
         e.preventDefault()
@@ -110,6 +115,7 @@ function addTeddyToDom(teddy, quantite) {
         // Reafficher a nouveau le Prix Final après suppression d'une ligne     
         document.querySelector(".totalfinal").innerText = ""
         prixTotalCalculEnEuro()
+        createNotif(`✔ Vous avez supprimé un article.`, document.querySelector(".notifmodifqty"))
     })
 
     // Modifier la quantité d'un article depuis le panier
@@ -122,16 +128,16 @@ function addTeddyToDom(teddy, quantite) {
         localStorage.setItem("panier", JSON.stringify(panier))
         article.querySelector(".tqty").innerText = qtySelectionne.value
         prixTotalCalculEnEuro()
-        const priceTotal = item.quantity * teddy.price // <=
+        const priceTotal = item.quantity * teddy.price 
         const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
         article.querySelector(".ttotal").innerText = priceTotalEuro
+        createNotif(`✔ Vous avez modifié la quantité d'un article.`, document.querySelector(".notifmodifqty"))
     })
 }
 
 
 // *********** POST / ORDER *************
 // Declaration variable formulaire
-let formMain = document.querySelector(".formmain")
 const formFirstName = document.getElementById("firstname")
 const formLastName = document.getElementById("lastname")
 const formAdress = document.getElementById("adress")
@@ -175,8 +181,7 @@ document.getElementById("purchaseform").addEventListener('submit', async (e) => 
         try {
             const contenu = await response.json()
             localStorage.setItem("resOrderId", JSON.stringify(contenu))
-            let verifLs = localStorage.resOrderId
-            let LS = localStorage.getItem("resOrderId")
+            localStorage.removeItem("panier")
             window.location = "confirmation.html"
         } catch (e) {
             console.error(e)
@@ -186,6 +191,8 @@ document.getElementById("purchaseform").addEventListener('submit', async (e) => 
 
 
 
+
+// BONUS **
 // RegExp Email du formulaire ********************
 let form = document.getElementById('purchaseform')
 //ecouter la modification de l'email

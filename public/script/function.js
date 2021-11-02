@@ -26,10 +26,15 @@ export function getPanier() {
 
 export function createNotif(texte, container) {
     let newDiv = document.createElement("div")
-    newDiv.classList.add('smallajout') 
+    newDiv.classList.add('smallajout')
     newDiv.innerHTML = texte
     container.appendChild(newDiv)
     setTimeout(function () {
         newDiv.remove();
     }, 4500)
+}
+
+
+export function conversionEnEuro(prixcible) {
+    Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prixcible / 100)
 }

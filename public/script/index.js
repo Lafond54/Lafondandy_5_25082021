@@ -1,15 +1,8 @@
 //variable http de l'API
 const teddiesApiUrl = "http://localhost:3000/api/teddies"
 
-//variable constante nommé templatearticle cible la div template 
-const templatearticle = document.querySelector("#templatearticle").content
 
-
-//variable constante cible la div principale contenant tous les articles templates
-const articles = document.querySelector(".articles")
-
-
-//fonction 
+//Fetch **** 
 async function getTeddies() {
     try {
         const res = await fetch(teddiesApiUrl)
@@ -22,6 +15,14 @@ async function getTeddies() {
         console.error(err)
     }
 }
+
+//DOM ****
+//variable constante nommé templatearticle cible la div template 
+const templatearticle = document.querySelector("#templatearticle").content
+
+
+//variable constante cible la div principale contenant tous les articles templates
+const articles = document.querySelector(".articles")
 
 // fonction ajout teddy au DOM
 function addTeddyToDom(teddy) {
@@ -38,7 +39,7 @@ function addTeddyToDom(teddy) {
 
 
 // ******************************
-//fonction
+//fonction global
 async function refresh() {
     articles.innerHTML = ""
     const teddies = await getTeddies()
