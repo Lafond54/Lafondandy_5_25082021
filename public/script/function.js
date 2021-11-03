@@ -31,7 +31,7 @@ export function createNotif(texte, container) {
     container.appendChild(newDiv)
     setTimeout(function () {
         newDiv.remove();
-    }, 4500)
+    }, 6000)
 }
 
 

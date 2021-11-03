@@ -74,7 +74,7 @@ function addTeddyToDom(teddy, quantite) {
     article.querySelector(".ttotal").innerText = priceTotalEuro
 
     article.querySelector(".modifierquantite").innerHTML = `                                                           
-                                                             <select class="qtyitem" required>
+                                                             <select class="qtyitem" title="Choisir une autre quantité" required>
                                                                  <option value="" selected="true" disabled="disabled">${quantite}</option>
                                                                  <option value="1">1</option>
                                                                  <option value="2">2</option>

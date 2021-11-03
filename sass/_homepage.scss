@@ -13,7 +13,7 @@ body {
 
 //Header
 .headercontainer {
-    background: $gris-fond;
+    background: linear-gradient(0deg, $gris-fond, $gris-clair);
     box-shadow: 0 0 0.5rem rgb(0, 0, 0);
 }
 
@@ -58,6 +58,20 @@ body {
     }
 }
 
+// logo back
+.far.fa-arrow-alt-circle-left {
+    font-size: 1.8rem;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    transition: 0.2s;
+    padding-right: 0.8rem;
+    &:hover {
+        color: $primaire;
+        text-shadow: rgba(0, 0, 0, 0.13) 0.1em 0.1em 0.2em;
+    }
+}
 // texte du header
 .headertxt {
     display: flex;
@@ -80,7 +94,6 @@ body {
         background: $gris-fond;
         height: 5px;
         border-radius: 0 0 5px 5px;
-
     }
 }
 // subheader
@@ -136,7 +149,7 @@ body {
 }
 
 .container3 {
-    background: $gris-fond;
+    background: linear-gradient(120deg, $gris-fond 70%, $gris-clair);
     max-width: 1400px;
     border: dashed 2px #55371169;
     border-radius: 10px;
@@ -147,7 +160,7 @@ body {
     max-width: 1400px;
     margin: auto;
     padding-bottom: 2rem;
-    background-color: $gris-fond;
+    background-color: #55371100;
     display: grid;
     grid-template-columns: 1fr;
     row-gap: 2rem;

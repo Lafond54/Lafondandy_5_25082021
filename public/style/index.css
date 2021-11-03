@@ -31,7 +31,7 @@ body {
 }
 
 .headercontainer {
-  background: #f7ba76;
+  background: linear-gradient(0deg, #f7ba76, #ffd4a3);
   box-shadow: 0 0 0.5rem black;
 }
 
@@ -76,6 +76,20 @@ body {
   transition: 0.2s;
 }
 .fas.fa-shopping-cart:hover {
+  color: #5d7052;
+  text-shadow: rgba(0, 0, 0, 0.13) 0.1em 0.1em 0.2em;
+}
+
+.far.fa-arrow-alt-circle-left {
+  font-size: 1.8rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: black;
+  transition: 0.2s;
+  padding-right: 0.8rem;
+}
+.far.fa-arrow-alt-circle-left:hover {
   color: #5d7052;
   text-shadow: rgba(0, 0, 0, 0.13) 0.1em 0.1em 0.2em;
 }
@@ -182,7 +196,7 @@ body {
 }
 
 .container3 {
-  background: #f7ba76;
+  background: linear-gradient(120deg, #f7ba76 70%, #ffd4a3);
   max-width: 1400px;
   border: dashed 2px #55371169;
   border-radius: 10px;
@@ -193,7 +207,7 @@ body {
   max-width: 1400px;
   margin: auto;
   padding-bottom: 2rem;
-  background-color: #f7ba76;
+  background-color: #55371100;
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 2rem;
@@ -420,9 +434,30 @@ body {
   background-color: rgba(100, 185, 114, 0.842);
   font-size: 1.2rem;
   margin: 15px auto;
+  padding: 0.5rem 0 0.5rem 0;
   text-align: center;
   opacity: 1;
   border-radius: 6px;
+  width: 70%;
+  animation: monanimnotif 6.1s ease-in-out;
+}
+@keyframes monanimnotif {
+  0% {
+    transform: translateY(0.8rem);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  30% {
+    transform: translateY(0px);
+  }
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .confirm {

@@ -58,7 +58,7 @@
     }
 }
 .flexgrow {
-    flex-grow: 1; 
+    flex-grow: 1;
 }
 
 .selectcolor {
@@ -72,7 +72,28 @@
     background-color: rgba(100, 185, 114, 0.842);
     font-size: 1.2rem;
     margin: 15px auto;
+    padding: 0.5rem 0 0.5rem 0;
     text-align: center;
     opacity: 1;
-    border-radius: 6px;    
+    border-radius: 6px;
+    width: 70%;
+    animation: monanimnotif 6.1s ease-in-out;
+    @keyframes monanimnotif {
+        0% {
+            transform: translateY(0.8rem);
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        30% {
+            transform: translateY(0px);
+        }
+        88% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
 }
