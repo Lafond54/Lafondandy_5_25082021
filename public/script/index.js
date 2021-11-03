@@ -1,20 +1,4 @@
-//variable http de l'API
-const teddiesApiUrl = "http://localhost:3000/api/teddies"
-
-
-//Fetch **** 
-async function getTeddies() {
-    try {
-        const res = await fetch(teddiesApiUrl)
-        if (!res.ok) {
-            throw res
-        }
-        return await res.json();
-    }
-    catch (err) {
-        console.error(err)
-    }
-}
+import { conversionEnEuro, getTeddies } from "./function.js"
 
 //DOM ****
 //variable constante nommé templatearticle cible la div template 
@@ -27,7 +11,7 @@ const articles = document.querySelector(".articles")
 // fonction ajout teddy au DOM
 function addTeddyToDom(teddy) {
     const article = templatearticle.cloneNode(true)
-    let price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
+    let price = conversionEnEuro(teddy.price)
     article.querySelector(".article__image").src = teddy.imageUrl
     article.querySelector(".article__titre").innerText = teddy.name
     article.querySelector(".article__soustitre").innerText = price

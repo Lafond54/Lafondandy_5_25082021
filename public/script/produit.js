@@ -1,5 +1,5 @@
 // ******************************
-import { getTeddy, getPanier, createNotif } from "./function.js"
+import { getTeddy, getPanier, createNotif, conversionEnEuro } from "./function.js"
 
 //Obtention de l'ID de la page ****
 function getParameter(paramaterId) {
@@ -25,11 +25,12 @@ const articles = document.querySelector(".articleproduit")
 function addTeddyToDom(teddy) {
     const article = templatecard.cloneNode(true)
 
-    let price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
+    let price = conversionEnEuro(teddy.price)
     article.querySelector(".card__divimg__item").src = teddy.imageUrl
     article.querySelector(".card__d__name").innerText = teddy.name
     article.querySelector(".card__d__price").innerText = `Prix : ${price}`
     article.querySelector(".card__d__descr").innerText = teddy.description
+    
     articles.appendChild(article)
 
     // Ajout d'un nonours dans le panier  ****

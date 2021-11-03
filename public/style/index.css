@@ -145,7 +145,7 @@ body {
   color: white;
 }
 .subtxt__btn:hover::after {
-  opacity: 0.25;
+  opacity: 0.15;
   transition: opacity 0.4s, box-shadow 0.4s;
 }
 .subtxt__btn::after {
@@ -404,7 +404,7 @@ body {
   color: white;
 }
 .card__d__add:hover::after {
-  opacity: 0.25;
+  opacity: 0.15;
   transition: opacity 0.4s, box-shadow 0.4s;
 }
 .card__d__add::after {
@@ -488,7 +488,7 @@ body {
   color: white;
 }
 .confirm__backindex:hover::after {
-  opacity: 0.25;
+  opacity: 0.15;
   transition: opacity 0.4s, box-shadow 0.4s;
 }
 .confirm__backindex::after {
@@ -689,7 +689,7 @@ img {
   color: white;
 }
 .action-button:hover::after {
-  opacity: 0.25;
+  opacity: 0.15;
   transition: opacity 0.4s, box-shadow 0.4s;
 }
 .action-button::after {
@@ -779,7 +779,7 @@ td, th {
   color: white;
 }
 .clearpanier:hover::after {
-  opacity: 0.25;
+  opacity: 0.15;
   transition: opacity 0.4s, box-shadow 0.4s;
 }
 .clearpanier::after {
@@ -835,7 +835,7 @@ td, th {
   color: white;
 }
 .far.fa-trash-alt:hover::after {
-  opacity: 0.25;
+  opacity: 0.15;
   transition: opacity 0.4s, box-shadow 0.4s;
 }
 .far.fa-trash-alt::after {

@@ -1,10 +1,10 @@
-import { getTeddy, getPanier, createNotif } from "./function.js"
+import { getTeddy, getPanier, createNotif, conversionEnEuro } from "./function.js"
 
-// Contenu panier sous forme d'array accessible depuis la page panier
+//Variable du tableau panier
 const panier = getPanier()
 console.log(panier)
 
-// 
+// Creer un objet teddies à la fonction getTeddies dans lequel on stocke une donnéee
 async function getTeddies() {
     if (!getTeddies.teddies) {
         const teddiesPromises = panier.map(item => getTeddy(item.id))
@@ -13,14 +13,14 @@ async function getTeddies() {
     return getTeddies.teddies
 }
 
-    // Afficher panier vide (et cacher les elements inutiles si panier est vide)
-    
-    if (panier.length === 0) {
-        console.log(`panier vide: ` + panier)
-        document.querySelector(".clearpanier").style.display = 'none'
-        document.querySelector(".tableaupanier").style.display = 'none'
-        document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html"><b>cette page</b></a>.`
-    }
+// Afficher panier vide (et cacher les elements inutiles si panier est vide)
+
+if (panier.length === 0) {
+    console.log(`panier vide: ` + panier)
+    document.querySelector(".clearpanier").style.display = 'none'
+    document.querySelector(".tableaupanier").style.display = 'none'
+    document.querySelector(".paniervide").innerHTML = `Votre panier est vide. <br>Remplissez le en vous rendant sur <a class="lienretour" href="index.html"><b>cette page</b></a>.`
+}
 
 
 // main ***********
@@ -39,8 +39,8 @@ main()
 
 // *** // Fonction prix final en euro****
 async function prixTotalCalculEnEuro() {
-    const teddiesPromises = panier.map(item => getTeddy(item.id))
-    const teddies = await Promise.all(teddiesPromises)
+
+    const teddies = await getTeddies()   
     let prixTotalCalcul = 0;
 
     panier.forEach(cartItem => {
@@ -49,7 +49,7 @@ async function prixTotalCalculEnEuro() {
     })
 
     //Affichage du prix total
-    const prixTotalCalculEnEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prixTotalCalcul / 100)
+    const prixTotalCalculEnEuro = conversionEnEuro(prixTotalCalcul)
     document.querySelector(".totalfinal").innerText = `Le montant total de votre panier est de : ` + prixTotalCalculEnEuro
 }
 
@@ -65,7 +65,7 @@ function addTeddyToDom(teddy, quantite) {
     //Calcul total et convert currency
     const price = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(teddy.price / 100)
     const priceTotal = quantite * teddy.price
-    const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
+    const priceTotalEuro = conversionEnEuro(priceTotal)
 
     // Inject DOM
     article.querySelector(".tname").innerText = teddy.name
@@ -113,7 +113,7 @@ function addTeddyToDom(teddy, quantite) {
         console.log(article)
         article.remove()
 
-        if (panier.length === 0 ) {
+        if (panier.length === 0) {
             localStorage.removeItem("panier")
             location.reload(true)
 
@@ -131,13 +131,13 @@ function addTeddyToDom(teddy, quantite) {
     qtySelectionne.addEventListener('change', function () {
         const item = panier.find(cartItem => cartItem.id === teddy._id)
 
-        item.quantity = parseInt(qtySelectionne.value)  // Ajout de parseInt pour eviter que la Qty se transforme en string de la localstorage
+        item.quantity = parseInt(qtySelectionne.value)  //La value est un string, parseInt permet de le convertir en number
 
         localStorage.setItem("panier", JSON.stringify(panier))
         article.querySelector(".tqty").innerText = qtySelectionne.value
         prixTotalCalculEnEuro()
         const priceTotal = item.quantity * teddy.price
-        const priceTotalEuro = new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(priceTotal / 100)
+        const priceTotalEuro = conversionEnEuro(priceTotal)
         article.querySelector(".ttotal").innerText = priceTotalEuro
         createNotif(`✔ Vous avez modifié la quantité d'un article.`, document.querySelector(".notifmodifpanier"))
     })

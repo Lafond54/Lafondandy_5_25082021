@@ -1,6 +1,19 @@
-
-//Variable http de l'API
+// Adresse API
 const teddiesApiUrl = "http://localhost:3000/api/teddies"
+
+
+export async function getTeddies() {
+    try {
+        const res = await fetch(teddiesApiUrl)
+        if (!res.ok) {
+            throw res
+        }
+        return await res.json();
+    }
+    catch (err) {
+        console.error(err)
+    }
+}
 
 
 export async function getTeddy(id) {
@@ -17,6 +30,8 @@ export async function getTeddy(id) {
         console.error(err)
     }
 }
+
+
 
 
 export function getPanier() {
@@ -36,5 +51,6 @@ export function createNotif(texte, container) {
 
 
 export function conversionEnEuro(prixcible) {
-    Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prixcible / 100)
+   return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(prixcible / 100)
 }
+
