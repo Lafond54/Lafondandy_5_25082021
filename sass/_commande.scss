@@ -35,7 +35,7 @@
     margin-bottom: 2rem;
 }
 
-.container4 {
+.container4 {    
     background: white;
     margin: 0 1rem 0 1rem;
     padding: 5px;
@@ -46,6 +46,9 @@
     @media (max-width: 430px) {
         margin-left: 0;
         margin-right: 0;
+    }
+    @media (min-width: 1300px) {
+        max-width: 400px;
     }
 }
 

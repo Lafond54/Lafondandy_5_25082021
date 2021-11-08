@@ -40,7 +40,7 @@ main()
 // *** // Fonction prix final en euro****
 async function prixTotalCalculEnEuro() {
 
-    const teddies = await getTeddies()   
+    const teddies = await getTeddies()
     let prixTotalCalcul = 0;
 
     panier.forEach(cartItem => {
@@ -173,6 +173,10 @@ document.getElementById("purchaseform").addEventListener('submit', async (e) => 
         email: formEmail.value
     }
 
+    if (products.length === 0) {
+        console.log("paniervide")
+        createNotif(`Remplissez votre panier avant de passer votre commande`, document.querySelector(".card-form"))
+    }
 
 
     if (products.length > 0) {

@@ -79,7 +79,7 @@ function addTeddyToCart(teddy, quantity) {
     //variable panier = la chaine de caractere de ( la valeur associé à la clé ) reconstruite en valeur JS OU= array vide
     const panier = getPanier()
 
-    //variable teddyCart = chercher dans le panier si il exite un Id stocké dans teddyCart correpondant à un ID de l'objet teddy
+    //variable teddyCart = On verifie la présence ou non de l'ID produit avec le contenu du panier
     let teddyCart = panier.find((teddyCart) => teddyCart.id === teddy._id)
 
     // Si teddyCart est faux, alors on injecte une valeur par defaut dans teddycart
